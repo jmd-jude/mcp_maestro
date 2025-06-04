@@ -11,14 +11,23 @@ Everything you need to create, manage, and optimize content with AI assistance
 
 ## Quick Setup
 
-1. **Double-click the installer:**
+1. Run the installer:
+   ```bash
+   ./install.sh
    ```
-   install.command
-   ```
-   
-2. **Copy the generated config** to your Claude Desktop configuration file (`~/Library/Application Support/Claude/claude_desktop_config.json`)
 
-3. **Restart Claude Desktop**
+2. Update your Claude Desktop configuration file (`~/Library/Application Support/Claude/claude_desktop_config.json`):
+   ```json
+   {
+     "mcpServers": {
+       "content-creator": {
+         "command": "/path/to/this/folder/run.sh"
+       }
+     }
+   }
+   ```
+
+3. Restart Claude Desktop
 
 ## Setup Instructions
 
