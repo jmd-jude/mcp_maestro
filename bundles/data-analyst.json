@@ -1,0 +1,44 @@
+{
+  "name": "Data Analyst",
+  "id": "data-analyst", 
+  "description": "Powerful data analysis toolkit with file processing, web research, and persistent insights",
+  "features": [
+    "Process CSV, Excel, and data files",
+    "Research market data and trends",
+    "Remember analysis patterns and insights",
+    "Generate and save reports"
+  ],
+  "servers": [
+    {
+      "name": "filesystem",
+      "package": "@modelcontextprotocol/server-filesystem",
+      "args": ["./data"],
+      "description": "Read data files, save analysis results and reports"
+    },
+    {
+      "name": "memory",
+      "package": "@modelcontextprotocol/server-memory",
+      "args": [],
+      "description": "Remember data patterns, analysis methods, and key findings"
+    },
+    {
+      "name": "brave-search",
+      "package": "@modelcontextprotocol/server-brave-search",
+      "args": [],
+      "description": "Research market data, industry trends, and benchmarks",
+      "requiresApiKey": true,
+      "apiKeyName": "BRAVE_API_KEY"
+    }
+  ],
+  "setupInstructions": [
+    "Create a 'data' folder for your datasets and analysis outputs",
+    "Get a free Brave Search API key from https://brave.com/search/api/",
+    "Set your BRAVE_API_KEY environment variable"
+  ],
+  "demoTasks": [
+    "Analyze sales data from a CSV file",
+    "Research industry benchmarks for comparison", 
+    "Generate insights and save them to a report",
+    "Remember analysis patterns for future use"
+  ]
+}

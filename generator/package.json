@@ -1,0 +1,13 @@
+{
+  "name": "mcp-bundle-generator",
+  "version": "1.0.0",
+  "description": "Generates MCP server bundles",
+  "main": "generate-bundle.js",
+  "type": "module",
+  "scripts": {
+    "generate": "node generate-bundle.js"
+  },
+  "keywords": ["mcp", "bundle", "generator"],
+  "author": "",
+  "license": "MIT"
+}

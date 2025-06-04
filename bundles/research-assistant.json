@@ -1,0 +1,44 @@
+{
+  "name": "Research Assistant",
+  "id": "research-assistant",
+  "description": "Comprehensive research companion for gathering, organizing, and synthesizing information",
+  "features": [
+    "Search and gather information from the web",
+    "Save research findings to organized files",
+    "Build a knowledge graph of discoveries",
+    "Remember research context and insights"
+  ],
+  "servers": [
+    {
+      "name": "brave-search",
+      "package": "@modelcontextprotocol/server-brave-search",
+      "args": [],
+      "description": "Search for academic papers, news, and web resources",
+      "requiresApiKey": true,
+      "apiKeyName": "BRAVE_API_KEY"
+    },
+    {
+      "name": "filesystem",
+      "package": "@modelcontextprotocol/server-filesystem",
+      "args": ["./research"],
+      "description": "Save and organize research notes and findings"
+    },
+    {
+      "name": "memory",
+      "package": "@modelcontextprotocol/server-memory",
+      "args": [],
+      "description": "Build connections between research topics and remember key insights"
+    }
+  ],
+  "setupInstructions": [
+    "Create a 'research' folder for your findings and notes",
+    "Get a free Brave Search API key from https://brave.com/search/api/",
+    "Set your BRAVE_API_KEY environment variable"
+  ],
+  "demoTasks": [
+    "Research the latest developments in AI safety",
+    "Find and summarize academic papers on a topic",
+    "Create a comprehensive research report",
+    "Build a knowledge map of related concepts"
+  ]
+}

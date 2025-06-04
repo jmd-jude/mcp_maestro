@@ -1,0 +1,17 @@
+{
+  "name": "mcp-orchestrator",
+  "version": "1.0.0",
+  "description": "MCP server orchestrator that combines multiple MCP servers",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["mcp", "orchestrator"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1"
+  }
+}

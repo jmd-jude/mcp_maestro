@@ -1,0 +1,44 @@
+{
+  "name": "Developer Assistant",
+  "id": "developer-assistant",
+  "description": "AI-powered coding companion with file management, web research, and persistent memory",
+  "features": [
+    "Read, write, and edit code files",
+    "Search documentation and Stack Overflow",
+    "Remember project context and decisions",
+    "Organize your development workspace"
+  ],
+  "servers": [
+    {
+      "name": "filesystem",
+      "package": "@modelcontextprotocol/server-filesystem",
+      "args": ["./projects"],
+      "description": "Manage your code files and project structure"
+    },
+    {
+      "name": "memory",
+      "package": "@modelcontextprotocol/server-memory",
+      "args": [],
+      "description": "Remember architecture decisions, bug fixes, and project context"
+    },
+    {
+      "name": "brave-search",
+      "package": "@modelcontextprotocol/server-brave-search",
+      "args": [],
+      "description": "Search for documentation, tutorials, and solutions",
+      "requiresApiKey": true,
+      "apiKeyName": "BRAVE_API_KEY"
+    }
+  ],
+  "setupInstructions": [
+    "Create a 'projects' folder for your development workspace",
+    "Get a free Brave Search API key from https://brave.com/search/api/",
+    "Set your BRAVE_API_KEY environment variable"
+  ],
+  "demoTasks": [
+    "Help me debug this code file",
+    "Search for best practices for this framework",
+    "Remember the architecture decisions for this project",
+    "Create boilerplate code for a new feature"
+  ]
+}

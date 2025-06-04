@@ -1,0 +1,44 @@
+{
+  "name": "Content Creator",
+  "id": "content-creator",
+  "description": "Everything you need to create, manage, and optimize content with AI assistance",
+  "features": [
+    "Read and write files",
+    "Search the web for research",
+    "Remember context and ideas",
+    "Organize your content workflow"
+  ],
+  "servers": [
+    {
+      "name": "filesystem",
+      "package": "@modelcontextprotocol/server-filesystem",
+      "args": ["./workspace"],
+      "description": "Read, write, and organize your content files"
+    },
+    {
+      "name": "memory",
+      "package": "@modelcontextprotocol/server-memory",
+      "args": [],
+      "description": "Remember important context, ideas, and project details"
+    },
+    {
+      "name": "brave-search",
+      "package": "@modelcontextprotocol/server-brave-search",
+      "args": [],
+      "description": "Research topics and gather information from the web",
+      "requiresApiKey": true,
+      "apiKeyName": "BRAVE_API_KEY"
+    }
+  ],
+  "setupInstructions": [
+    "Create a 'workspace' folder where your content files will be stored",
+    "Get a free Brave Search API key from https://brave.com/search/api/",
+    "Set your BRAVE_API_KEY environment variable"
+  ],
+  "demoTasks": [
+    "Ask me to research trending topics in your niche",
+    "Have me create a content calendar file",
+    "Store important brand guidelines in memory",
+    "Generate and save draft blog posts"
+  ]
+}

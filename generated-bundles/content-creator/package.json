@@ -1,0 +1,25 @@
+{
+  "name": "content-creator",
+  "version": "1.0.0",
+  "description": "Everything you need to create, manage, and optimize content with AI assistance",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "install-deps": "npm install"
+  },
+  "keywords": [
+    "mcp",
+    "ai",
+    "assistant",
+    "content-creator"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "@modelcontextprotocol/server-filesystem": "latest",
+    "@modelcontextprotocol/server-memory": "latest",
+    "@modelcontextprotocol/server-brave-search": "latest"
+  }
+}

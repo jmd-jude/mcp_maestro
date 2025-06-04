@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCP Maestro - AI Assistant Bundles</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .bundles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .bundle-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bundle-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .bundle-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .bundle-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 1.5rem;
+        }
+
+        .bundle-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .bundle-description {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .features-list li {
+            padding: 0.5rem 0;
+            color: #2d3748;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #48bb78;
+            font-weight: bold;
+        }
+
+        .download-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .download-btn:active {
+            transform: translateY(0);
+        }
+
+        .loading {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin: -10px 0 0 -10px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .demo-section {
+            background: rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 3rem;
+            color: white;
+            text-align: center;
+        }
+
+        .demo-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .demo-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: white;
+            color: #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: rgba(255,255,255,0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MCP Maestro</h1>
+            <p class="subtitle">
+                Choose your AI assistant bundle and get a complete, working experience in under 2 minutes. 
+                No complex setup, no multiple installations - just pick what you need and go.
+            </p>
+        </header>
+
+        <div class="bundles-grid">
+            <div class="bundle-card">
+                <div class="bundle-icon">📝</div>
+                <h3 class="bundle-title">Content Creator</h3>
+                <p class="bundle-description">
+                    Everything you need to create, manage, and optimize content with AI assistance.
+                </p>
+                <ul class="features-list">
+                    <li>Read and write files</li>
+                    <li>Search the web for research</li>
+                    <li>Remember context and ideas</li>
+                    <li>Organize your content workflow</li>
+                </ul>
+                <button class="download-btn" onclick="downloadBundle('content-creator')">
+                    Get Content Creator Bundle
+                </button>
+            </div>
+
+            <div class="bundle-card">
+                <div class="bundle-icon">💻</div>
+                <h3 class="bundle-title">Developer Assistant</h3>
+                <p class="bundle-description">
+                    AI-powered coding companion with file management, web research, and persistent memory.
+                </p>
+                <ul class="features-list">
+                    <li>Read, write, and edit code files</li>
+                    <li>Search documentation and Stack Overflow</li>
+                    <li>Remember project context and decisions</li>
+                    <li>Organize your development workspace</li>
+                </ul>
+                <button class="download-btn" onclick="downloadBundle('developer-assistant')">
+                    Get Developer Bundle
+                </button>
+            </div>
+
+            <div class="bundle-card">
+                <div class="bundle-icon">🔬</div>
+                <h3 class="bundle-title">Research Assistant</h3>
+                <p class="bundle-description">
+                    Comprehensive research companion for gathering, organizing, and synthesizing information.
+                </p>
+                <ul class="features-list">
+                    <li>Search and gather information from the web</li>
+                    <li>Save research findings to organized files</li>
+                    <li>Build a knowledge graph of discoveries</li>
+                    <li>Remember research context and insights</li>
+                </ul>
+                <button class="download-btn" onclick="downloadBundle('research-assistant')">
+                    Get Research Bundle
+                </button>
+            </div>
+
+            <div class="bundle-card">
+                <div class="bundle-icon">📊</div>
+                <h3 class="bundle-title">Data Analyst</h3>
+                <p class="bundle-description">
+                    Powerful data analysis toolkit with file processing, web research, and persistent insights.
+                </p>
+                <ul class="features-list">
+                    <li>Process CSV, Excel, and data files</li>
+                    <li>Research market data and trends</li>
+                    <li>Remember analysis patterns and insights</li>
+                    <li>Generate and save reports</li>
+                </ul>
+                <button class="download-btn" onclick="downloadBundle('data-analyst')">
+                    Get Data Analyst Bundle
+                </button>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>How It Works</h2>
+            <p>From bundle selection to working AI assistant in under 2 minutes:</p>
+            
+            <div class="demo-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Pick Your Bundle</h4>
+                    <p>Choose the AI assistant type that matches your workflow</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Download & Install</h4>
+                    <p>Run one script to set up everything automatically</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Start Creating</h4>
+                    <p>Open Claude Desktop and your tools are ready to use</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Built with MCP (Model Context Protocol) • Each bundle includes multiple integrated tools working seamlessly together</p>
+        </div>
+    </div>
+
+    <script>
+        const bundles = {
+            'content-creator': {
+                name: 'Content Creator',
+                description: 'Everything you need to create, manage, and optimize content with AI assistance'
+            },
+            'developer-assistant': {
+                name: 'Developer Assistant', 
+                description: 'AI-powered coding companion with file management, web research, and persistent memory'
+            },
+            'research-assistant': {
+                name: 'Research Assistant',
+                description: 'Comprehensive research companion for gathering, organizing, and synthesizing information'
+            },
+            'data-analyst': {
+                name: 'Data Analyst',
+                description: 'Powerful data analysis toolkit with file processing, web research, and persistent insights'
+            }
+        };
+
+        async function downloadBundle(bundleId) {
+            const button = event.target;
+            const originalText = button.textContent;
+            
+            // Show loading state
+            button.classList.add('loading');
+            button.textContent = 'Preparing Bundle...';
+            button.disabled = true;
+
+            try {
+                // For demo, we'll download a pre-generated bundle
+                // In production, this would call the generator API
+                const zipUrl = `./content-creator.zip`;
+                
+                // Create download link for the real zip file
+                const link = document.createElement('a');
+                link.href = zipUrl;
+                link.download = `${bundleId}-bundle.zip`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                button.textContent = 'Downloaded! ✓';
+                button.style.background = '#48bb78';
+                
+                // Show next steps
+                showInstallationInstructions(bundleId);
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '';
+                    button.classList.remove('loading');
+                    button.disabled = false;
+                }, 3000);
+                
+            } catch (error) {
+                button.textContent = 'Error - Try Again';
+                button.style.background = '#e53e3e';
+                button.classList.remove('loading');
+                button.disabled = false;
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '';
+                }, 3000);
+            }
+        }
+
+        function showInstallationInstructions(bundleId) {
+            // Create a modal or notification showing next steps
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 1000;
+            `;
+            
+            modal.innerHTML = `
+                <div style="background: white; padding: 2rem; border-radius: 16px; max-width: 500px; margin: 2rem;">
+                    <h3 style="margin-bottom: 1rem; color: #2d3748;">Bundle Downloaded! 🎉</h3>
+                    <p style="margin-bottom: 1.5rem; color: #4a5568;">Here's what to do next:</p>
+                    <ol style="margin-bottom: 2rem; padding-left: 1.5rem; color: #2d3748; line-height: 1.6;">
+                        <li>Unzip the downloaded file</li>
+                        <li>Open terminal in the extracted folder</li>
+                        <li>Run: <code style="background: #f7fafc; padding: 0.2rem 0.4rem; border-radius: 4px;">./install.sh</code></li>
+                        <li>Follow the setup instructions</li>
+                        <li>Restart Claude Desktop</li>
+                        <li>Start creating! 🚀</li>
+                    </ol>
+                    <button onclick="this.parentElement.parentElement.remove()" 
+                            style="background: #667eea; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                        Got it!
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+        }
+
+        async function simulateBundleGeneration(bundleId) {
+            // Simulate API call delay
+            return new Promise(resolve => setTimeout(resolve, 2000));
+        }
+
+        function createDownloadContent(bundleId, bundle) {
+            return `# ${bundle.name}
+
+${bundle.description}
+
+## Quick Setup
+
+1. Extract this zip file
+2. Run: ./install.sh
+3. Update Claude Desktop config with the provided path
+4. Restart Claude Desktop
+
+## What's Included
+
+- Orchestrator server that combines multiple MCP tools
+- All necessary dependencies and configuration
+- Step-by-step setup instructions
+- Example tasks to try
+
+## Generated by MCP Maestro
+
+This bundle was automatically generated and includes everything you need for a complete AI assistant experience.
+
+Visit: https://your-repo-url.github.io for more bundles!
+`;
+        }
+
+        function downloadFile(filename, content) {
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
+            element.setAttribute('download', filename);
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+    </script>
+</body>
+</html>
