@@ -1,0 +1,25 @@
+{
+  "name": "research-assistant",
+  "version": "1.0.0",
+  "description": "Comprehensive research companion for gathering, organizing, and synthesizing information",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "install-deps": "npm install"
+  },
+  "keywords": [
+    "mcp",
+    "ai",
+    "assistant",
+    "research-assistant"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "@modelcontextprotocol/server-brave-search": "latest",
+    "@modelcontextprotocol/server-filesystem": "latest",
+    "@modelcontextprotocol/server-memory": "latest"
+  }
+}

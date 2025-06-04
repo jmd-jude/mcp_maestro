@@ -22,7 +22,8 @@ echo "To use this bundle:"
 echo "1. Update your Claude Desktop config with:"
 echo '   "mcpServers": {'
 echo '     "developer-assistant": {'
-echo '       "command": "'$(pwd)'/run.sh"'
+echo '       "command": "bash",'
+echo '       "args": ["'$(pwd)'/run.sh"]'
 echo '     }'
 echo '   }'
 echo ""
