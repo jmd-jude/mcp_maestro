@@ -240,6 +240,33 @@
             margin-bottom: 0.5rem;
         }
 
+        .creator-profiles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .creator-profile {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 1.2rem;
+            border-radius: 10px;
+            border-left: 3px solid #667eea;
+        }
+
+        .creator-type {
+            font-weight: 700;
+            color: #667eea;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .creator-value {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.4;
+        }
+
         @media (max-width: 768px) {
             .slide-content {
                 padding: 2rem;
@@ -283,27 +310,31 @@
             <div class="slide-content">
                 <div class="slide-header">
                     <div class="slide-number">01 / The Problem</div>
-                    <h2 class="slide-title">Barriers to AI Integration</h2>
+                    <h2 class="slide-title">A Locked-Out Creator Economy</h2>
                 </div>
                 <div class="slide-body">
-                    <p>Creating bespoke integrations between AI models and external services today requires <span class="highlight">deep technical expertise, custom coding, and managing complex API interactions.</span></p>
+                    <p>Millions of domain experts, consultants, agencies, and creative professionals have <span class="highlight">valuable interactive experiences they could offer through AI applications</span>, but they're completely locked out by technical barriers.</p>
                     
-                    <div class="metrics-grid">
-                        <div class="metric-card">
-                            <div class="metric-title">For Developers</div>
-                            <div class="metric-value">Fragmented Discovery</div>
+                    <div class="creator-profiles">
+                        <div class="creator-profile">
+                            <div class="creator-type">Marketing Consultants</div>
+                            <div class="creator-value">Want to offer AI-powered audit tools but can't build integrations</div>
                         </div>
-                        <div class="metric-card">
-                            <div class="metric-title">Current Methods</div>
-                            <div class="metric-value">Unreliable Scraping</div>
+                        <div class="creator-profile">
+                            <div class="creator-type">Financial Advisors</div>
+                            <div class="creator-value">Have proprietary analysis methods but lack technical implementation</div>
                         </div>
-                        <div class="metric-card">
-                            <div class="metric-title">Performance</div>
-                            <div class="metric-value">LLM Degradation</div>
+                        <div class="creator-profile">
+                            <div class="creator-type">Creative Agencies</div>
+                            <div class="creator-value">Envision custom AI workflows but need developers for everything</div>
+                        </div>
+                        <div class="creator-profile">
+                            <div class="creator-type">SaaS Companies</div>
+                            <div class="creator-value">Want AI-native integrations but building MCP servers requires deep expertise</div>
                         </div>
                     </div>
 
-                    <p>Non-technical creators and businesses face an even higher barrier, lacking the tools to translate their domain expertise into usable, AI-orchestrable capabilities.</p>
+                    <p>Meanwhile, creating bespoke integrations requires <span class="highlight">deep technical expertise, custom coding, and managing complex API interactions</span> – barriers that prevent this creator economy from flourishing.</p>
                 </div>
             </div>
         </div>
@@ -313,17 +344,19 @@
             <div class="slide-content">
                 <div class="slide-header">
                     <div class="slide-number">02 / The Solution</div>
-                    <h2 class="slide-title">Digital Products, Not Components</h2>
+                    <h2 class="slide-title">Interactive Service Products</h2>
                 </div>
                 <div class="slide-body">
-                    <p>We reimagine MCP servers <span class="highlight">not merely as technical components, but as discrete, interactive digital products</span> – focused service components consumable by AI-centric applications.</p>
+                    <p>We reimagine MCP servers <span class="highlight">not as technical components, but as designed interactive service products</span> – complete experiences that creators can build without code.</p>
                     
                     <div class="example-box">
-                        <div class="example-title">Real-World Example</div>
-                        <p>A marketing consultant uses abstraction tools to create an "SEO Audit Assistant" server that combines their domain expertise with API integrations, without writing any MCP protocol code.</p>
+                        <div class="example-title">The Vision in Action</div>
+                        <p>A marketing consultant uses visual tools to design an "SEO Audit Assistant" that combines their methodology with API data sources, creates custom prompts for client reports, and packages it all as an installable AI service – no programming required.</p>
                     </div>
 
-                    <p>The MCP primitives (Prompts, Resources, Tools, Sampling, Roots) serve as fundamental building blocks, enabling <strong>user-friendly abstraction layers</strong> that democratize creation through intuitive, no-code interfaces.</p>
+                    <p>The MCP primitives (Prompts, Resources, Tools, Sampling, Roots) become <strong>building blocks for designed experiences</strong>. Abstraction layers transform these into intuitive design interfaces, much like how Shopify democratized e-commerce or Zapier democratized workflow automation.</p>
+
+                    <p>Creators focus on <span class="highlight">designing valuable user journeys</span> while the platform handles the technical complexity of MCP implementation, hosting, and distribution.</p>
                 </div>
             </div>
         </div>
@@ -336,25 +369,29 @@
                     <h2 class="slide-title">The Convergence Moment</h2>
                 </div>
                 <div class="slide-body">
-                    <p>Market forces are converging rapidly. This critical inflection point is evidenced by:</p>
+                    <p>Market forces are converging to enable this democratization. This critical inflection point is evidenced by:</p>
                     
                     <div class="metrics-grid">
                         <div class="metric-card">
                             <div class="metric-title">Client Adoption</div>
-                            <div class="metric-value">Proliferating</div>
+                            <div class="metric-value">Accelerating</div>
                         </div>
                         <div class="metric-card">
                             <div class="metric-title">Official Registry</div>
-                            <div class="metric-value">Community-Led</div>
+                            <div class="metric-value">Launching</div>
                         </div>
                         <div class="metric-card">
                             <div class="metric-title">Abstraction Tools</div>
                             <div class="metric-value">Emerging</div>
                         </div>
+                        <div class="metric-card">
+                            <div class="metric-title">Web Hosting</div>
+                            <div class="metric-value">Maturing</div>
+                        </div>
                     </div>
 
-                    <p>The shift to reliable, <span class="highlight">web-hosted servers with authorization</span> is seen as the "next level" for making MCP ubiquitous.</p>
-                    <p>AI agent capabilities are maturing, driving demand for robust, reliable external interaction methods beyond basic chat.</p>
+                    <p>The shift to <span class="highlight">web-hosted servers with built-in authorization</span> removes the final barriers to mainstream creator adoption. AI capabilities are maturing beyond basic chat, creating demand for rich, interactive experiences.</p>
+                    <p>We're at the "WordPress moment" for AI services – the infrastructure exists, now we need the creation tools that democratize access.</p>
                 </div>
             </div>
         </div>
@@ -364,23 +401,23 @@
             <div class="slide-content">
                 <div class="slide-header">
                     <div class="slide-number">04 / Validation</div>
-                    <h2 class="slide-title">Proving the Thesis</h2>
+                    <h2 class="slide-title">Proving the Creator Thesis</h2>
                 </div>
                 <div class="slide-body">
                     <p>We must validate three key assumptions over the next <span class="highlight">3-6 months</span>:</p>
                     
                     <div class="assumptions-list">
                         <div class="assumption">
-                            <div class="assumption-title">Assumption 1: Creator Accessibility</div>
-                            <p>Non-technical creators can effectively use abstraction tools to define valuable MCP server capabilities without code.</p>
+                            <div class="assumption-title">Assumption 1: Creator Demand</div>
+                            <p>Non-technical creators will engage with visual design tools to build valuable AI service experiences and see clear ROI potential.</p>
                         </div>
                         <div class="assumption">
-                            <div class="assumption-title">Assumption 2: Distribution Viability</div>
-                            <p>Emerging infrastructure creates a viable distribution channel for these "digital product" servers.</p>
+                            <div class="assumption-title">Assumption 2: Technical Feasibility</div>
+                            <p>Abstraction layers can successfully translate creator designs into functional, performant MCP servers without compromising capability.</p>
                         </div>
                         <div class="assumption">
-                            <div class="assumption-title">Assumption 3: End-User Value</div>
-                            <p>Users will discover, trust, and integrate focused servers, finding them valuable in their AI workflows.</p>
+                            <div class="assumption-title">Assumption 3: Market Adoption</div>
+                            <p>End-users will discover, trust, and integrate these creator-built services, finding them valuable in their AI workflows.</p>
                         </div>
                     </div>
                 </div>
@@ -392,40 +429,40 @@
             <div class="slide-content">
                 <div class="slide-header">
                     <div class="slide-number">05 / Success Metrics</div>
-                    <h2 class="slide-title">Measuring Progress</h2>
+                    <h2 class="slide-title">Measuring Creator Success</h2>
                 </div>
                 <div class="slide-body">
                     <div class="metrics-grid">
                         <div class="metric-card">
-                            <div class="metric-title">Leading Indicators</div>
-                            <div class="metric-value">Creator Success</div>
+                            <div class="metric-title">Creator Engagement</div>
+                            <div class="metric-value">Time-to-Value</div>
                         </div>
                         <div class="metric-card">
-                            <div class="metric-title">Developer Engagement</div>
-                            <div class="metric-value">Registry API Usage</div>
+                            <div class="metric-title">Service Quality</div>
+                            <div class="metric-value">User Retention</div>
                         </div>
                         <div class="metric-card">
-                            <div class="metric-title">Server Diversity</div>
-                            <div class="metric-value">Use-Case Focus</div>
+                            <div class="metric-title">Ecosystem Growth</div>
+                            <div class="metric-value">Service Diversity</div>
                         </div>
                         <div class="metric-card">
-                            <div class="metric-title">Lagging Indicators</div>
-                            <div class="metric-value">User Adoption</div>
+                            <div class="metric-title">Platform Value</div>
+                            <div class="metric-value">Creator Revenue</div>
                         </div>
                     </div>
                     
-                    <p>Success means demonstrating that <span class="highlight">non-technical participants can successfully generate functional, focused MCP servers</span> using abstraction tools in testing environments.</p>
-                    <p>Ultimate validation comes from tracking user installation rates of these servers within client marketplaces.</p>
+                    <p>Success means demonstrating that <span class="highlight">creators can build, deploy, and monetize AI service experiences</span> without technical barriers, creating value for both creators and end-users.</p>
+                    <p>Leading indicators include creator onboarding success rates and service creation velocity. Lagging indicators focus on user adoption and creator revenue generation.</p>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 7: Resources & Thesis -->
+        <!-- Slide 7: Resources & Vision -->
         <div class="slide">
             <div class="slide-content">
                 <div class="slide-header">
                     <div class="slide-number">06 / The Path Forward</div>
-                    <h2 class="slide-title">Resources & Vision</h2>
+                    <h2 class="slide-title">Enabling the Creator Economy</h2>
                 </div>
                 <div class="slide-body">
                     <div class="metrics-grid">
@@ -434,14 +471,16 @@
                             <div class="metric-value">$150K - $300K</div>
                         </div>
                         <div class="metric-card">
-                            <div class="metric-title">Timeline</div>
-                            <div class="metric-value">1-3 Months</div>
+                            <div class="metric-title">Validation Timeline</div>
+                            <div class="metric-value">3-6 Months</div>
                         </div>
                     </div>
                     
-                    <p><strong>Our Core Thesis:</strong> By treating MCP servers as <span class="highlight">discrete, AI-orchestrable digital products</span> and providing user-friendly abstraction tools, we can drastically lower the barrier to creation and unleash a new wave of interactive AI experiences.</p>
+                    <p><strong>Our Core Thesis:</strong> By treating MCP servers as <span class="highlight">designed interactive service products</span> and providing creator-friendly design tools, we can unlock a new economy of AI-enhanced services built by domain experts, not just developers.</p>
                     
-                    <p>Ultimate success would enable <span class="highlight">a marketplace of thousands of specialized AI service components</span>, transforming how businesses and creators participate in the AI economy.</p>
+                    <p>Ultimate success would enable <span class="highlight">a thriving marketplace where thousands of creators</span> – consultants, agencies, subject matter experts – can design, distribute, and monetize AI service experiences that integrate seamlessly into users' AI workflows.</p>
+                    
+                    <p>This transforms the AI ecosystem from developer-centric to <strong>creator-centric</strong>, unlocking exponentially more value and innovation.</p>
                 </div>
             </div>
         </div>
