@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Orchestrable Service Products - Complete Vision</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .main-container {
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Tab Navigation */
+        .tab-navigation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 2000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: 2px solid #667eea;
+            color: #667eea;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .tab-btn.active {
+            background: #667eea;
+            color: white;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .tab-btn:hover:not(.active) {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Opportunity Presentation Styles */
+        .opportunity-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: calc(100vh - 80px);
+            position: relative;
+        }
+
+        .slide {
+            min-height: calc(100vh - 80px);
+            padding: 2rem;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .slide.active {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .slide-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .slide-number {
+            color: #667eea;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .slide-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0.5rem 0;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .slide-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .slide-body {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #444;
+        }
+
+        .slide-body p {
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .metric-card {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .metric-title {
+            font-size: 0.9rem;
+            color: #667eea;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .assumptions-list {
+            display: grid;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .assumption {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+
+        .assumption-title {
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .example-box {
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .example-title {
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .creator-profiles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .creator-profile {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 1.2rem;
+            border-radius: 10px;
+            border-left: 3px solid #667eea;
+        }
+
+        .creator-type {
+            font-weight: 700;
+            color: #667eea;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .creator-value {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        /* Navigation for slides */
+        .slide-navigation {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .nav-btn:disabled:hover {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            transform: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+            z-index: 1000;
+        }
+
+        /* Prototype Tab Styles */
+        .prototype-content {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .prototype-intro {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .prototype-intro h2 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .prototype-intro p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .prototype-frame {
+            width: 100%;
+            height: calc(100vh - 200px);
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Evidence Tab Styles */
+        .evidence-content {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .evidence-intro {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .evidence-intro h2 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .video-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-card h3 {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .video-card p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .video-frame {
+            width: 100%;
+            height: 200px;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .tab-navigation {
+                padding: 1rem;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .tab-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+            
+            .slide-content {
+                padding: 2rem;
+                margin: 1rem;
+            }
+            
+            .slide-title {
+                font-size: 2rem;
+            }
+            
+            .video-frame {
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Tab Navigation -->
+        <div class="tab-navigation">
+            <button class="tab-btn active" onclick="switchTab('opportunity')">The Opportunity</button>
+            <button class="tab-btn" onclick="switchTab('prototype')">Live Prototype</button>
+            <button class="tab-btn" onclick="switchTab('evidence')">Ecosystem Evidence</button>
+        </div>
+
+        <!-- Opportunity Tab -->
+        <div class="tab-content active" id="opportunity-tab">
+            <div class="progress-bar" id="progressBar"></div>
+            
+            <div class="opportunity-container">
+                <!-- Slide 1: Title -->
+                <div class="slide active">
+                    <div class="slide-content">
+                        <div class="slide-header">
+                            <div class="slide-number">The Opportunity</div>
+                            <h1 class="slide-title">AI-Orchestrable Service Products</h1>
+                            <p class="slide-subtitle">Unlocking a New Creator Economy</p>
+                        </div>
+                        <div class="slide-body">
+                            <p>A fundamental shift is underway: <span class="highlight">Artificial Intelligence is moving from a passive utility to an active, interactive partner.</span></p>
+                            <p>This necessitates a standard way for AI agents and client applications to reliably connect to and orchestrate actions and access data from the vast world of external services.</p>
+                            <p><strong>MCP provides the core protocol for this interaction layer</strong>, and the emerging ecosystem of abstraction tools, registries, and infrastructure is now poised to democratize the creation of these AI-enhanced interactions.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2: The Problem -->
+                <div class="slide">
+                    <div class="slide-content">
+                        <div class="slide-header">
+                            <div class="slide-number">01 / The Problem</div>
+                            <h2 class="slide-title">A Locked-Out Creator Economy</h2>
+                        </div>
+                        <div class="slide-body">
+                            <p>Millions of domain experts, consultants, agencies, and creative professionals have <span class="highlight">valuable interactive experiences they could offer through AI applications</span>, but they're completely locked out by technical barriers.</p>
+                            
+                            <div class="creator-profiles">
+                                <div class="creator-profile">
+                                    <div class="creator-type">Marketing Consultants</div>
+                                    <div class="creator-value">Want to offer AI-powered audit tools but can't build integrations</div>
+                                </div>
+                                <div class="creator-profile">
+                                    <div class="creator-type">Financial Advisors</div>
+                                    <div class="creator-value">Have proprietary analysis methods but lack technical implementation</div>
+                                </div>
+                                <div class="creator-profile">
+                                    <div class="creator-type">Creative Agencies</div>
+                                    <div class="creator-value">Envision custom AI workflows but need developers for everything</div>
+                                </div>
+                                <div class="creator-profile">
+                                    <div class="creator-type">SaaS Companies</div>
+                                    <div class="creator-value">Want AI-native integrations but building MCP servers requires deep expertise</div>
+                                </div>
+                            </div>
+
+                            <p>Meanwhile, creating bespoke integrations requires <span class="highlight">deep technical expertise, custom coding, and managing complex API interactions</span> – barriers that prevent this creator economy from flourishing.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3: The Solution -->
+                <div class="slide">
+                    <div class="slide-content">
+                        <div class="slide-header">
+                            <div class="slide-number">02 / The Solution</div>
+                            <h2 class="slide-title">Interactive Service Products</h2>
+                        </div>
+                        <div class="slide-body">
+                            <p>We reimagine MCP servers <span class="highlight">not as technical components, but as designed interactive service products</span> – complete experiences that creators can build without code.</p>
+                            
+                            <div class="example-box">
+                                <div class="example-title">The Vision in Action</div>
+                                <p>A marketing consultant uses visual tools to design an "SEO Audit Assistant" that combines their methodology with API data sources, creates custom prompts for client reports, and packages it all as an installable AI service – no programming required.</p>
+                            </div>
+
+                            <p>The MCP primitives (Prompts, Resources, Tools, Sampling, Roots) become <strong>building blocks for designed experiences</strong>. Abstraction layers transform these into intuitive design interfaces, much like how Shopify democratized e-commerce or Zapier democratized workflow automation.</p>
+
+                            <p>Creators focus on <span class="highlight">designing valuable user journeys</span> while the platform handles the technical complexity of MCP implementation, hosting, and distribution.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 4: Market Timing -->
+                <div class="slide">
+                    <div class="slide-content">
+                        <div class="slide-header">
+                            <div class="slide-number">03 / Market Timing</div>
+                            <h2 class="slide-title">The Convergence Moment</h2>
+                        </div>
+                        <div class="slide-body">
+                            <p>Market forces are converging to enable this democratization. This critical inflection point is evidenced by:</p>
+                            
+                            <div class="metrics-grid">
+                                <div class="metric-card">
+                                    <div class="metric-title">Client Adoption</div>
+                                    <div class="metric-value">Accelerating</div>
+                                </div>
+                                <div class="metric-card">
+                                    <div class="metric-title">Official Registry</div>
+                                    <div class="metric-value">Launching</div>
+                                </div>
+                                <div class="metric-card">
+                                    <div class="metric-title">Abstraction Tools</div>
+                                    <div class="metric-value">Emerging</div>
+                                </div>
+                                <div class="metric-card">
+                                    <div class="metric-title">Web Hosting</div>
+                                    <div class="metric-value">Maturing</div>
+                                </div>
+                            </div>
+
+                            <p>The shift to <span class="highlight">web-hosted servers with built-in authorization</span> removes the final barriers to mainstream creator adoption. AI capabilities are maturing beyond basic chat, creating demand for rich, interactive experiences.</p>
+                            <p>We're at the "WordPress moment" for AI services – the infrastructure exists, now we need the creation tools that democratize access.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 5: Validation Roadmap -->
+                <div class="slide">
+                    <div class="slide-content">
+                        <div class="slide-header">
+                            <div class="slide-number">04 / Validation</div>
+                            <h2 class="slide-title">Proving the Creator Thesis</h2>
+                        </div>
+                        <div class="slide-body">
+                            <p>We must validate three key assumptions over the next <span class="highlight">3-6 months</span>:</p>
+                            
+                            <div class="assumptions-list">
+                                <div class="assumption">
+                                    <div class="assumption-title">Assumption 1: Creator Demand</div>
+                                    <p>Non-technical creators will engage with visual design tools to build valuable AI service experiences and see clear ROI potential.</p>
+                                </div>
+                                <div class="assumption">
+                                    <div class="assumption-title">Assumption 2: Technical Feasibility</div>
+                                    <p>Abstraction layers can successfully translate creator designs into functional, performant MCP servers without compromising capability.</p>
+                                </div>
+                                <div class="assumption">
+                                    <div class="assumption-title">Assumption 3: Market Adoption</div>
+                                    <p>End-users will discover, trust, and integrate these creator-built services, finding them valuable in their AI workflows.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 6: Success Metrics -->
+                <div class="slide">
+                    <div class="slide-content">
+                        <div class="slide-header">
+                            <div class="slide-number">05 / Success Metrics</div>
+                            <h2 class="slide-title">Measuring Creator Success</h2>
+                        </div>
+                        <div class="slide-body">
+                            <div class="metrics-grid">
+                                <div class="metric-card">
+                                    <div class="metric-title">Creator Engagement</div>
+                                    <div class="metric-value">Time-to-Value</div>
+                                </div>
+                                <div class="metric-card">
+                                    <div class="metric-title">Service Quality</div>
+                                    <div class="metric-value">User Retention</div>
+                                </div>
+                                <div class="metric-card">
+                                    <div class="metric-title">Ecosystem Growth</div>
+                                    <div class="metric-value">Service Diversity</div>
+                                </div>
+                                <div class="metric-card">
+                                    <div class="metric-title">Platform Value</div>
+                                    <div class="metric-value">Creator Revenue</div>
+                                </div>
+                            </div>
+                            
+                            <p>Success means demonstrating that <span class="highlight">creators can build, deploy, and monetize AI service experiences</span> without technical barriers, creating value for both creators and end-users.</p>
+                            <p>Leading indicators include creator onboarding success rates and service creation velocity. Lagging indicators focus on user adoption and creator revenue generation.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 7: Resources & Vision -->
+                <div class="slide">
+                    <div class="slide-content">
+                        <div class="slide-header">
+                            <div class="slide-number">06 / The Path Forward</div>
+                            <h2 class="slide-title">Enabling the Creator Economy</h2>
+                        </div>
+                        <div class="slide-body">
+                            <div class="metrics-grid">
+                                <div class="metric-card">
+                                    <div class="metric-title">Capital Requirement</div>
+                                    <div class="metric-value">$150K - $300K</div>
+                                </div>
+                                <div class="metric-card">
+                                    <div class="metric-title">Validation Timeline</div>
+                                    <div class="metric-value">3-6 Months</div>
+                                </div>
+                            </div>
+                            
+                            <p><strong>Our Core Thesis:</strong> By treating MCP servers as <span class="highlight">designed interactive service products</span> and providing creator-friendly design tools, we can unlock a new economy of AI-enhanced services built by domain experts, not just developers.</p>
+                            
+                            <p>Ultimate success would enable <span class="highlight">a thriving marketplace where thousands of creators</span> – consultants, agencies, subject matter experts – can design, distribute, and monetize AI service experiences that integrate seamlessly into users' AI workflows.</p>
+                            
+                            <p>This transforms the AI ecosystem from developer-centric to <strong>creator-centric</strong>, unlocking exponentially more value and innovation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-navigation">
+                <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+                <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+            </div>
+        </div>
+
+        <!-- Prototype Tab -->
+        <div class="tab-content" id="prototype-tab">
+            <div class="prototype-content">
+                <div class="prototype-intro">
+                    <h2>🚀 Live Prototype: MCP Maestro</h2>
+                    <p>This is a <strong>working prototype</strong> that demonstrates the vision in action. You can actually click the buttons and download real AI assistant bundles!</p>
+                    <p>Each bundle combines multiple MCP tools into focused, use-case-specific experiences – exactly the kind of "interactive service products" we envision creators building through visual design tools.</p>
+                    <p><strong>Try it:</strong> Click any download button below to get a complete AI assistant setup that works with Claude Desktop.</p>
+                </div>
+                <iframe src="https://jmd-jude.github.io/mcp_maestro/index.html" class="prototype-frame" title="MCP Maestro - Live Prototype"></iframe>
+            </div>
+        </div>
+
+        <!-- Evidence Tab -->
+        <div class="tab-content" id="evidence-tab">
+            <div class="evidence-content">
+                <div class="evidence-intro">
+                    <h2>📊 Ecosystem Evidence</h2>
+                    <p>Recent presentations from the MCP ecosystem show the infrastructure and community developments that validate our opportunity timing.</p>
+                </div>
+                
+                <div class="videos-grid">
+                    <div class="video-card">
+                        <h3>Official MCP Registry Launch</h3>
+                        <p>Community-driven effort to centralize server discovery and provide structured installation instructions – the distribution infrastructure we need.</p>
+                        <iframe class="video-frame" src="https://www.youtube.com/embed/C_nqAWHsldo?si=JIEdCMMUILoL8W-3" title="MCP Registry Launch" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    
+                    <div class="video-card">
+                        <h3>MCP Protocol Deep Dive</h3>
+                        <p>Technical overview of the 5 primitives and web hosting capabilities that enable rich interactive experiences beyond basic tool calling.</p>
+                        <iframe class="video-frame" src="https://www.youtube.com/embed/HbM5Mnoyu7w?si=2PGn1XBAABgjtoTl" title="MCP Protocol Deep Dive" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    
+                    <div class="video-card">
+                        <h3>Postman's MCP Generator</h3>
+                        <p>Live demo of abstraction tools emerging in the ecosystem – "shopping cart experience" for creating use-case specific MCP servers without coding.</p>
+                        <iframe class="video-frame" src="https://www.youtube.com/embed/jI9NTVX68T0?si=rSiz8Gh0dELB0vNb" title="Postman MCP Generator Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching functionality
+        let currentTab = 'opportunity';
+        
+        function switchTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // Add active class to selected tab button
+            event.target.classList.add('active');
+            
+            currentTab = tabName;
+        }
+
+        // Slide functionality for opportunity tab
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function updateProgress() {
+            if (currentTab === 'opportunity') {
+                const progress = ((currentSlide + 1) / totalSlides) * 100;
+                document.getElementById('progressBar').style.width = progress + '%';
+            }
+        }
+
+        function showSlide(n) {
+            if (currentTab !== 'opportunity') return;
+            
+            slides[currentSlide].classList.remove('active');
+            currentSlide = n;
+            
+            if (currentSlide >= totalSlides) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = totalSlides - 1;
+            
+            setTimeout(() => {
+                slides[currentSlide].classList.add('active');
+            }, 100);
+            
+            updateProgress();
+            updateNavButtons();
+        }
+
+        function changeSlide(direction) {
+            if (currentTab === 'opportunity') {
+                showSlide(currentSlide + direction);
+            }
+        }
+
+        function updateNavButtons() {
+            if (currentTab === 'opportunity') {
+                const prevBtn = document.getElementById('prevBtn');
+                const nextBtn = document.getElementById('nextBtn');
+                
+                prevBtn.disabled = currentSlide === 0;
+                nextBtn.disabled = currentSlide === totalSlides - 1;
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (currentTab === 'opportunity') {
+                if (e.key === 'ArrowLeft') changeSlide(-1);
+                if (e.key === 'ArrowRight') changeSlide(1);
+            }
+        });
+
+        // Initialize
+        updateProgress();
+        updateNavButtons();
+    </script>
+</body>
+</html>
