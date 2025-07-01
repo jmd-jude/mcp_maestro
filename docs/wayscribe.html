@@ -939,9 +939,117 @@
                 We're working with select methodology-based consultants to validate and refine this vision. 
                 No technical knowledge required - we handle the complexity while you focus on your expertise.
             </p>
-            <button class="cta-button" onclick="window.open('mailto:dgmulei@gmail.com?subject=Early Access Interest', '_blank')">
-                Get Started Today
-            </button>
+            
+            <!-- Contact Form -->
+            <div style="background: rgba(255, 255, 255, 0.1); border-radius: 1rem; padding: 2rem; max-width: 600px; margin: 2rem auto 0; backdrop-filter: blur(10px);">
+                <form action="https://formspree.io/f/xzzgowwr" method="POST" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div>
+                            <label style="display: block; color: #e2e8f0; font-weight: 500; margin-bottom: 0.5rem; font-size: 0.875rem;">
+                                Name *
+                            </label>
+                            <input 
+                                type="text" 
+                                name="name" 
+                                required
+                                style="width: 100%; padding: 0.75rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 0.5rem; background: rgba(255,255,255,0.1); color: white; font-size: 1rem;"
+                                placeholder="Your name"
+                            >
+                        </div>
+                        <div>
+                            <label style="display: block; color: #e2e8f0; font-weight: 500; margin-bottom: 0.5rem; font-size: 0.875rem;">
+                                Email *
+                            </label>
+                            <input 
+                                type="email" 
+                                name="email" 
+                                required
+                                style="width: 100%; padding: 0.75rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 0.5rem; background: rgba(255,255,255,0.1); color: white; font-size: 1rem;"
+                                placeholder="your@email.com"
+                            >
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label style="display: block; color: #e2e8f0; font-weight: 500; margin-bottom: 0.5rem; font-size: 0.875rem;">
+                            What type of consultant are you? *
+                        </label>
+                        <select 
+                            name="consultant_type" 
+                            required
+                            style="width: 100%; padding: 0.75rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 0.5rem; background: rgba(255,255,255,0.1); color: white; font-size: 1rem;"
+                        >
+                            <option value="" style="color: #374151;">Select your domain...</option>
+                            <option value="business_coach" style="color: #374151;">Business/Leadership Coach</option>
+                            <option value="life_coach" style="color: #374151;">Life/Personal Development Coach</option>
+                            <option value="health_wellness" style="color: #374151;">Health/Wellness Specialist</option>
+                            <option value="pr_communications" style="color: #374151;">PR/Communications</option>
+                            <option value="product_strategy" style="color: #374151;">Product/Strategy Consultant</option>
+                            <option value="sales_marketing" style="color: #374151;">Sales/Marketing Specialist</option>
+                            <option value="other" style="color: #374151;">Other (please specify in message)</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label style="display: block; color: #e2e8f0; font-weight: 500; margin-bottom: 0.5rem; font-size: 0.875rem;">
+                            Which path interests you most?
+                        </label>
+                        <div style="display: flex; gap: 1rem;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; color: #cbd5e1; cursor: pointer;">
+                                <input type="radio" name="path_interest" value="lead_generation" style="margin: 0;">
+                                <span style="font-size: 0.875rem;">Enhanced Lead Generation</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; color: #cbd5e1; cursor: pointer;">
+                                <input type="radio" name="path_interest" value="productized_revenue" style="margin: 0;">
+                                <span style="font-size: 0.875rem;">Productized Revenue</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; color: #cbd5e1; cursor: pointer;">
+                                <input type="radio" name="path_interest" value="not_sure" style="margin: 0;">
+                                <span style="font-size: 0.875rem;">Not sure yet</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label style="display: block; color: #e2e8f0; font-weight: 500; margin-bottom: 0.5rem; font-size: 0.875rem;">
+                            Tell us about your methodology/expertise
+                        </label>
+                        <textarea 
+                            name="methodology" 
+                            rows="4"
+                            style="width: 100%; padding: 0.75rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 0.5rem; background: rgba(255,255,255,0.1); color: white; font-size: 1rem; resize: vertical;"
+                            placeholder="What frameworks, assessments, or structured approaches do you use with clients? What makes your methodology unique?"
+                        ></textarea>
+                    </div>
+                    
+                    <div>
+                        <label style="display: block; color: #e2e8f0; font-weight: 500; margin-bottom: 0.5rem; font-size: 0.875rem;">
+                            Additional message
+                        </label>
+                        <textarea 
+                            name="message" 
+                            rows="3"
+                            style="width: 100%; padding: 0.75rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 0.5rem; background: rgba(255,255,255,0.1); color: white; font-size: 1rem; resize: vertical;"
+                            placeholder="Any questions or additional context you'd like to share?"
+                        ></textarea>
+                    </div>
+                    
+                    <button 
+                        type="submit"
+                        style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1rem 2rem; border-radius: 0.5rem; border: none; font-size: 1.125rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 25px rgba(8, 145, 178, 0.3)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'"
+                    >
+                        Get Started Today
+                    </button>
+                    
+                </form>
+            </div>
+            
+            <p style="font-size: 0.875rem; color: #94a3b8; margin-top: 1rem; text-align: center;">
+                We'll reach out within 48 hours to discuss your specific use case
+            </p>
         </section>
     </main>
 
