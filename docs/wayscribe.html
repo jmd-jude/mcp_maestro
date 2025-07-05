@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wayscribe - Your Knowledge, Infinitely Accessible</title>
+    <title>Wayscribe - Your Consultation Style, Infinitely Scalable</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.js"></script>
     <style>
         * {
@@ -150,23 +150,22 @@
         /* Problem Section */
         .problem {
             background: white;
+            text-align: center;
         }
 
-        .problem-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .problem-content h2 {
+        .problem h2 {
             font-size: 2.5rem;
             margin-bottom: 2rem;
             color: #1e293b;
         }
 
+        .problem-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
         .problem-content p {
-            font-size: 1.125rem;
+            font-size: 1.25rem;
             color: #475569;
             margin-bottom: 1.5rem;
             line-height: 1.8;
@@ -177,75 +176,202 @@
             font-weight: 600;
         }
 
-        .problem-visual {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            border-radius: 1rem;
-            padding: 3rem;
-            text-align: center;
-            position: relative;
+        /* Before/After Transformation */
+        .transformation {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin: 4rem auto;
+            max-width: 900px;
         }
 
-        .trapped-expertise {
+        .before-box, .after-box {
+            border-radius: 1rem;
+            padding: 2rem;
+        }
+
+        .before-box {
+            background: #fef2f2;
+        }
+
+        .after-box {
+            background: #f0fdf4;
+        }
+
+        .transform-arrow {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1rem;
+            gap: 0.5rem;
         }
 
-        .expertise-box {
+        .transform-arrow div {
             background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%);
             color: white;
-            padding: 1.5rem 2rem;
-            border-radius: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 2rem;
             font-weight: 600;
-            margin-bottom: 1rem;
+            font-size: 0.875rem;
+            white-space: nowrap;
         }
 
-        .calendar-constraint {
-            background: #fef2f2;
-            border: 2px dashed #fca5a5;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            color: #dc2626;
+        /* How It Works Section */
+        .how-it-works {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            text-align: center;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin: 4rem 0;
+        }
+
+        .step {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%);
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .step h3 {
+            color: #1e293b;
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .step p {
+            color: #64748b;
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        /* Examples Section */
+        .examples {
+            background: white;
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .example {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 1rem;
+            padding: 2rem;
+            border-left: 4px solid #0891b2;
+        }
+
+        .example h4 {
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+            font-size: 1.125rem;
+        }
+
+        .example .domain {
+            color: #64748b;
             font-size: 0.875rem;
             margin-bottom: 1rem;
         }
 
-        .missed-opportunities {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .missed-opportunity {
-            background: #fee2e2;
-            padding: 0.75rem;
-            border-radius: 0.5rem;
-            font-size: 0.75rem;
-            color: #991b1b;
-            flex: 1;
-            text-align: center;
-        }
-
-        /* Coming Soon Sections */
-        .coming-soon {
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            border: 2px dashed #cbd5e1;
-            border-radius: 1rem;
-            padding: 4rem 2rem;
-            text-align: center;
-            margin: 2rem 0;
-        }
-
-        .coming-soon h3 {
-            font-size: 1.5rem;
-            color: #64748b;
+        .example p {
+            color: #475569;
+            font-size: 0.875rem;
+            line-height: 1.6;
             margin-bottom: 1rem;
         }
 
-        .coming-soon p {
-            color: #94a3b8;
-            font-size: 1rem;
+        .example .quote {
+            color: #0891b2;
+            font-style: italic;
+            font-size: 0.875rem;
+            border-top: 1px solid #cbd5e1;
+            padding-top: 1rem;
+        }
+
+        /* Paths Section */
+        .paths {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .paths-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .path {
+            background: white;
+            border-radius: 1rem;
+            padding: 2.5rem;
+            border: 2px solid #e2e8f0;
+        }
+
+        .path-badge {
+            background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .path h3 {
+            color: #1e293b;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .path .outcome {
+            color: #16a34a;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .path-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .path-list li {
+            display: flex;
+            align-items: start;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+            color: #475569;
+        }
+
+        .path-list li:before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #0891b2;
+            border-radius: 50%;
+            margin-top: 0.5rem;
+            flex-shrink: 0;
         }
 
         /* Early Access Section */
@@ -269,10 +395,63 @@
             margin-right: auto;
         }
 
-        .early-access .cta-button {
-            font-size: 1.125rem;
-            padding: 1rem 2rem;
+        .form-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 500px;
+            margin: 2rem auto 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            color: #e2e8f0;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 0.75rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 0.5rem;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .form-group input::placeholder, .form-group textarea::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .form-submit {
             background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            border: none;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(8, 145, 178, 0.3);
         }
 
         /* Responsive Design */
@@ -294,13 +473,30 @@
                 font-size: 1.25rem;
             }
 
-            .problem-grid {
+            .transformation {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
 
-            .missed-opportunities {
-                flex-direction: column;
+            .transform-arrow {
+                transform: rotate(90deg);
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .examples-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .paths-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -332,13 +528,12 @@
         <nav class="nav">
             <div class="logo">Wayscribe</div>
             <ul class="nav-links">
-                <li><a href="#problem">The Problem</a></li>
-                <li><a href="#vision">The Vision</a></li>
+                <li><a href="#problem">The Challenge</a></li>
                 <li><a href="#how-it-works">How It Works</a></li>
                 <li><a href="#examples">Examples</a></li>
-                <li><a href="#for-you">Getting Started</a></li>
+                <li><a href="#paths">Getting Started</a></li>
             </ul>
-            <a href="#early-access" class="cta-button">Join Early Access</a>
+            <a href="#early-access" class="cta-button">Get Started</a>
         </nav>
     </header>
 
@@ -346,708 +541,220 @@
         <!-- Hero Section -->
         <section class="hero">
             <div class="hero-content animate-in">
-                <h1>Your methodology is everywhere. But your clients still need <span class="highlight">YOU.</span></h1>
-                <p class="subtitle">You've written the book. Built the website. Created the course. Your expertise is out there, working 24/7.</p>
+                <h1>Your knowledge scales.<br>Your way of working doesn't.</h1>
+                <p class="subtitle">Now you can scale both.</p>
                 <p class="description">
-                    Yet clients still book expensive 1:1 sessions. Why? Because they need someone who understands their specific situation, remembers their progress, and knows exactly what step comes next.
-                    Transform your expertise into AI consultation that provides what your content can't: personalized guidance that adapts to each person's unique context, just like you would.
+                    Transform your expertise—the questions you ask, the patterns you see, the way you guide—into software that delivers like you do. 
+                    Capture not just what you know, but how you work.
                 </p>
-                <a href="#problem" class="cta-button">Learn How It Works</a>
+                <a href="#problem" class="cta-button">See How</a>
             </div>
         </section>
 
         <!-- Problem Section -->
         <section id="problem" class="section problem">
-            <div class="problem-grid">
-                <div class="problem-content">
-                    <h2>The Consultation Trap</h2>
-                    <p>
-                        You've spent years building expertise. Your clients get real results from your guidance. 
-                        But you're trapped by consulting's fundamental constraint: <span class="highlight">trading time for money, one conversation at a time.</span>
-                    </p>
-                    <p>
-                        Meanwhile, the people who need your specific expertise can't find you, can't afford you, 
-                        or can't wait for your availability. Your knowledge sits locked in your calendar, 
-                        helping dozens when it could help thousands.
-                    </p>
-                    <p>
-                        <strong>Why this is now possible:</strong> Software applications have finally matured to understand context and nuance, 
-                        but only tech companies have been able to harness this capability. For domain experts like you, 
-                        the infrastructure simply didn't exist.
-                    </p>
-                    <p class="highlight" style="font-size: 1.25rem; font-weight: 700;">Until now.</p>
-                </div>
-                
-                <div class="problem-visual">
-                    <div class="trapped-expertise">
-                        <div class="expertise-box">Your Proven Methodology</div>
-                        <i data-lucide="arrow-down" style="color: #94a3b8; width: 2rem; height: 2rem;"></i>
-                        <div class="calendar-constraint">⏰ Limited by Your Calendar</div>
-                        <div class="missed-opportunities">
-                            <div class="missed-opportunity">Can't Find You</div>
-                            <div class="missed-opportunity">Can't Afford You</div>
-                            <div class="missed-opportunity">Can't Wait</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Vision Section -->
-        <section id="vision" class="section">
-            <div style="text-align: center; margin-bottom: 4rem;">
-                <h2 style="font-size: 2.5rem; margin-bottom: 2rem; color: #1e293b;">Why Now</h2>
-                <p style="font-size: 1.25rem; color: #64748b; max-width: 700px; margin: 0 auto;">
-                    For the first time, digital products can understand context, synthesize complex information, <strong>and</strong> apply your specific methodology. 
-                    Our platform is built for domain experts to deliver experiences based on your unique system. It's your expertise, your way, amplified like never before.
+            <h2>The Consulting Growth Constraint</h2>
+            <div class="problem-content">
+                <p>
+                    Your approach—how you listen, when you push, which questions unlock breakthroughs—
+                    only works in <span class="highlight">1:1 sessions, one conversation at a time.</span>
+                </p>
+                <p>
+                    Meanwhile, people who need your specific way of working can't access it. Your 
+                    methods, your judgment calls, your pattern recognition—all constrained by your schedule.
+                </p>
+                <p class="highlight" style="font-size: 1.5rem; font-weight: 700; margin: 2rem 0;">Until now.</p>
+                <p>
+                    Software can finally capture not just what you know, but how you work. 
+                    The tools to scale consultation style, not just content, finally exist.
                 </p>
             </div>
 
             <!-- Before/After Transformation -->
-            <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 2rem; align-items: center; margin-bottom: 4rem;">
-                <!-- Before -->
-                <div style="background: #fef2f2; border-radius: 1rem; padding: 2rem;">
-                    <h3 style="color: #dc2626; margin-bottom: 1.5rem; text-align: center;">Today's Reality</h3>
-                    <div>
-                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-                            <div style="width: 8px; height: 8px; background: #dc2626; border-radius: 50%;"></div>
-                            <span style="color: #7f1d1d;">One expert, limited hours</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-                            <div style="width: 8px; height: 8px; background: #dc2626; border-radius: 50%;"></div>
-                            <span style="color: #7f1d1d;">High-cost consultations ($200-500/hour)</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-                            <div style="width: 8px; height: 8px; background: #dc2626; border-radius: 50%;"></div>
-                            <span style="color: #7f1d1d;">Weeks-long waiting lists</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-                            <div style="width: 8px; height: 8px; background: #dc2626; border-radius: 50%;"></div>
-                            <span style="color: #7f1d1d;">Expertise dies with retirement</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 0.75rem;">
-                            <div style="width: 8px; height: 8px; background: #dc2626; border-radius: 50%;"></div>
-                            <span style="color: #7f1d1d;">No guidance for niche domains</span>
-                        </div>
-                    </div>
+            <div class="transformation">
+                <div class="before-box">
+                    <h3 style="color: #dc2626; margin-bottom: 1rem;">Today</h3>
+                    <p style="color: #7f1d1d; margin: 0;">Your consultation magic locked in 1:1 sessions. Premium guidance requires premium time. Value creation stops when you do.</p>
                 </div>
 
-                <!-- Arrow -->
-                <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
-                    <div style="background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%); color: white; padding: 0.75rem 1.5rem; border-radius: 2rem; font-weight: 600; white-space: nowrap;">
-                        AI + Your Expertise
-                    </div>
+                <div class="transform-arrow">
+                    <div>Your System</div>
                     <i data-lucide="arrow-right" style="color: #0891b2; width: 2rem; height: 2rem;"></i>
                 </div>
 
-                <!-- After -->
-                <div style="background: #f0fdf4; border-radius: 1rem; padding: 2rem;">
-                    <h3 style="color: #16a34a; margin-bottom: 1.5rem; text-align: center;">With Wayscribe</h3>
-                    <div>
-                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-                            <div style="width: 8px; height: 8px; background: #16a34a; border-radius: 50%;"></div>
-                            <span style="color: #14532d;">Unlimited consultations, 24/7</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-                            <div style="width: 8px; height: 8px; background: #16a34a; border-radius: 50%;"></div>
-                            <span style="color: #14532d;">Accessible pricing for everyone</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-                            <div style="width: 8px; height: 8px; background: #16a34a; border-radius: 50%;"></div>
-                            <span style="color: #14532d;">Instant, personalized guidance</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-                            <div style="width: 8px; height: 8px; background: #16a34a; border-radius: 50%;"></div>
-                            <span style="color: #14532d;">Expertise preserved and scaled</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 0.75rem;">
-                            <div style="width: 8px; height: 8px; background: #16a34a; border-radius: 50%;"></div>
-                            <span style="color: #14532d;">Consultation where none existed</span>
-                        </div>
-                    </div>
+                <div class="after-box">
+                    <h3 style="color: #16a34a; margin-bottom: 1rem;">With Wayscribe</h3>
+                    <p style="color: #14532d; margin: 0;">Your approach scales infinitely. Software that works like you do. Consultative experiences, always available.</p>
                 </div>
-            </div>
-
-            <!-- What Makes This Different -->
-            <div style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 1rem; padding: 3rem; margin-bottom: 3rem;">
-                <h3 style="text-align: center; font-size: 1.75rem; margin-bottom: 2rem; color: #1e293b;">This Isn't Generic AI</h3>
-                
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
-                    <div style="text-align: center;">
-                        <div style="background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%); width: 4rem; height: 4rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
-                            <i data-lucide="brain" style="color: white; width: 1.5rem; height: 1.5rem;"></i>
-                        </div>
-                        <h4 style="color: #1e293b; margin-bottom: 0.75rem;">Understands Your Framework</h4>
-                        <p style="color: #64748b; font-size: 0.875rem;">AI that learns your specific methodology, not just general knowledge</p>
-                    </div>
-
-                    <div style="text-align: center;">
-                        <div style="background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%); width: 4rem; height: 4rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
-                            <i data-lucide="target" style="color: white; width: 1.5rem; height: 1.5rem;"></i>
-                        </div>
-                        <h4 style="color: #1e293b; margin-bottom: 0.75rem;">Context-Aware Guidance</h4>
-                        <p style="color: #64748b; font-size: 0.875rem;">Remembers each client's unique situation and history</p>
-                    </div>
-
-                    <div style="text-align: center;">
-                        <div style="background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%); width: 4rem; height: 4rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
-                            <i data-lucide="file-text" style="color: white; width: 1.5rem; height: 1.5rem;"></i>
-                        </div>
-                        <h4 style="color: #1e293b; margin-bottom: 0.75rem;">Creates Real Deliverables</h4>
-                        <p style="color: #64748b; font-size: 0.875rem;">Professional documents users can act on immediately</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- The Breakthrough -->
-            <div style="text-align: center; background: white; padding: 2rem; border-radius: 1rem; border-left: 4px solid #0891b2;">
-                <h3 style="color: #1e293b; margin-bottom: 1rem;">The Breakthrough Moment</h3>
-                <p style="font-size: 1.125rem; color: #475569; line-height: 1.7;">
-                    <strong style="color: #0891b2;">Your expertise becomes infinitely accessible.</strong> 
-                    The EOS implementer's strategic framework, the nutritionist's elimination protocol, 
-                    the PR consultant's crisis playbook—all transformed into AI consultants that work around the clock, 
-                    understanding nuance and delivering personalized guidance at the quality level of human expertise.
-                </p>
             </div>
         </section>
 
         <!-- How It Works Section -->
-        <section id="how-it-works" class="section" style="background: white;">
-            <div style="text-align: center; margin-bottom: 4rem;">
-                <h2 style="font-size: 2.5rem; margin-bottom: 2rem; color: #1e293b;">How It Works</h2>
-                <p style="font-size: 1.25rem; color: #64748b; max-width: 600px; margin: 0 auto;">
-                    From your expertise to scaled consultation in three simple steps. 
-                    No coding, no complexity—just your knowledge transformed.
-                </p>
-            </div>
-
-            <!-- Three Step Process -->
-            <div style="display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 2rem; align-items: center; margin-bottom: 4rem;">
-                
-                <!-- Step 1 -->
-                <div style="text-align: center;">
-                    <div style="background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%); width: 5rem; height: 5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; position: relative;">
-                        <span style="color: white; font-size: 1.5rem; font-weight: bold;">1</span>
-                    </div>
-                    <h3 style="color: #1e293b; margin-bottom: 1rem; font-size: 1.25rem;">Share Your Expertise</h3>
-                    <p style="color: #64748b; font-size: 0.875rem; line-height: 1.6;">
-                        Upload your methodologies, frameworks, case studies, and client guides. 
-                        Everything that makes your consultation valuable.
-                    </p>
-                    <div style="background: #f8fafc; border-radius: 0.5rem; padding: 1rem; margin-top: 1rem;">
-                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                            <i data-lucide="file-text" style="color: #0891b2; width: 1rem; height: 1rem;"></i>
-                            <span style="font-size: 0.75rem; color: #475569;">Documents & guides</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                            <i data-lucide="book-open" style="color: #0891b2; width: 1rem; height: 1rem;"></i>
-                            <span style="font-size: 0.75rem; color: #475569;">Methodologies & frameworks</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 0.5rem;">
-                            <i data-lucide="users" style="color: #0891b2; width: 1rem; height: 1rem;"></i>
-                            <span style="font-size: 0.75rem; color: #475569;">Case studies & examples</span>
-                        </div>
-                    </div>
+        <section id="how-it-works" class="section how-it-works">
+            <h2 style="font-size: 2.5rem; margin-bottom: 2rem; color: #1e293b;">Three Steps. No Code.</h2>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Share Your Way</h3>
+                    <p>Upload materials that show how you work—session transcripts, methodologies, case studies. Everything that demonstrates your unique approach.</p>
                 </div>
 
-                <!-- Arrow 1 -->
-                <div style="display: flex; align-items: center;">
-                    <i data-lucide="arrow-right" style="color: #cbd5e1; width: 2rem; height: 2rem;"></i>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>We Capture It</h3>
+                    <p>Our platform maps your patterns and creates software that mirrors your consultation style—your questions, your judgment, your moves.</p>
                 </div>
 
-                <!-- Step 2 -->
-                <div style="text-align: center;">
-                    <div style="background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%); width: 5rem; height: 5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
-                        <span style="color: white; font-size: 1.5rem; font-weight: bold;">2</span>
-                    </div>
-                    <h3 style="color: #1e293b; margin-bottom: 1rem; font-size: 1.25rem;">We Transform It</h3>
-                    <p style="color: #64748b; font-size: 0.875rem; line-height: 1.6;">
-                        Our team handles all the technical complexity. We transform your knowledge 
-                        into an AI consultant that thinks like you.
-                    </p>
-                    <div style="background: #f8fafc; border-radius: 0.5rem; padding: 1rem; margin-top: 1rem;">
-                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                            <i data-lucide="brain" style="color: #0891b2; width: 1rem; height: 1rem;"></i>
-                            <span style="font-size: 0.75rem; color: #475569;">AI learns your methodology</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                            <i data-lucide="settings" style="color: #0891b2; width: 1rem; height: 1rem;"></i>
-                            <span style="font-size: 0.75rem; color: #475569;">Custom configuration & testing</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 0.5rem;">
-                            <i data-lucide="shield-check" style="color: #0891b2; width: 1rem; height: 1rem;"></i>
-                            <span style="font-size: 0.75rem; color: #475569;">Quality assurance & refinement</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Arrow 2 -->
-                <div style="display: flex; align-items: center;">
-                    <i data-lucide="arrow-right" style="color: #cbd5e1; width: 2rem; height: 2rem;"></i>
-                </div>
-
-                <!-- Step 3 -->
-                <div style="text-align: center;">
-                    <div style="background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); width: 5rem; height: 5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
-                        <span style="color: white; font-size: 1.5rem; font-weight: bold;">3</span>
-                    </div>
-                    <h3 style="color: #1e293b; margin-bottom: 1rem; font-size: 1.25rem;">You Scale</h3>
-                    <p style="color: #64748b; font-size: 0.875rem; line-height: 1.6;">
-                        Launch your AI consultant. Add it to your website, use it for lead generation, 
-                        or create new revenue streams—unlimited consultations, 24/7.
-                    </p>
-                    <div style="background: #f0fdf4; border-radius: 0.5rem; padding: 1rem; margin-top: 1rem;">
-                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                            <i data-lucide="globe" style="color: #16a34a; width: 1rem; height: 1rem;"></i>
-                            <span style="font-size: 0.75rem; color: #14532d;">Website integration</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                            <i data-lucide="users" style="color: #16a34a; width: 1rem; height: 1rem;"></i>
-                            <span style="font-size: 0.75rem; color: #14532d;">Lead generation & qualification</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 0.5rem;">
-                            <i data-lucide="trending-up" style="color: #16a34a; width: 1rem; height: 1rem;"></i>
-                            <span style="font-size: 0.75rem; color: #14532d;">New revenue streams</span>
-                        </div>
-                    </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>You Scale</h3>
+                    <p>Launch software that works like you do. Your approach, always available.</p>
                 </div>
             </div>
 
-            <!-- Timeline Expectation -->
-            <div style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 1rem; padding: 2rem; text-align: center; margin-bottom: 3rem;">
-                <h3 style="color: #1e293b; margin-bottom: 1rem;">Timeline & Effort</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+            <div style="background: white; border-radius: 1rem; padding: 2rem; text-align: center;">
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
                     <div>
                         <div style="font-size: 2rem; color: #0891b2; font-weight: bold;">2-3 hours</div>
-                        <p style="color: #64748b; font-size: 0.875rem;">Your time investment</p>
+                        <p style="color: #64748b; font-size: 0.875rem; margin: 0;">Your time investment</p>
                     </div>
                     <div>
-                        <div style="font-size: 2rem; color: #0891b2; font-weight: bold;">1-2 weeks</div>
-                        <p style="color: #64748b; font-size: 0.875rem;">From upload to launch</p>
+                        <div style="font-size: 2rem; color: #0891b2; font-weight: bold;">1-2 days</div>
+                        <p style="color: #64748b; font-size: 0.875rem; margin: 0;">From upload to launch</p>
                     </div>
                     <div>
                         <div style="font-size: 2rem; color: #0891b2; font-weight: bold;">∞</div>
-                        <p style="color: #64748b; font-size: 0.875rem;">Consultation capacity</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- What You Get -->
-            <div style="background: white; border: 2px solid #e2e8f0; border-radius: 1rem; padding: 2rem;">
-                <h3 style="text-align: center; color: #1e293b; margin-bottom: 2rem;">What You Get</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
-                    <div style="display: flex; align-items: start; gap: 0.75rem;">
-                        <i data-lucide="check-circle" style="color: #16a34a; width: 1.25rem; height: 1.25rem; margin-top: 0.125rem; flex-shrink: 0;"></i>
-                        <div>
-                            <strong style="color: #1e293b;">AI Consultant</strong>
-                            <p style="color: #64748b; font-size: 0.875rem; margin: 0;">That understands your specific methodology</p>
-                        </div>
-                    </div>
-                    <div style="display: flex; align-items: start; gap: 0.75rem;">
-                        <i data-lucide="check-circle" style="color: #16a34a; width: 1.25rem; height: 1.25rem; margin-top: 0.125rem; flex-shrink: 0;"></i>
-                        <div>
-                            <strong style="color: #1e293b;">Website Integration</strong>
-                            <p style="color: #64748b; font-size: 0.875rem; margin: 0;">Simple embed code or hosted page</p>
-                        </div>
-                    </div>
-                    <div style="display: flex; align-items: start; gap: 0.75rem;">
-                        <i data-lucide="check-circle" style="color: #16a34a; width: 1.25rem; height: 1.25rem; margin-top: 0.125rem; flex-shrink: 0;"></i>
-                        <div>
-                            <strong style="color: #1e293b;">Professional Deliverables</strong>
-                            <p style="color: #64748b; font-size: 0.875rem; margin: 0;">Reports, plans, and guides clients can use</p>
-                        </div>
-                    </div>
-                    <div style="display: flex; align-items: start; gap: 0.75rem;">
-                        <i data-lucide="check-circle" style="color: #16a34a; width: 1.25rem; height: 1.25rem; margin-top: 0.125rem; flex-shrink: 0;"></i>
-                        <div>
-                            <strong style="color: #1e293b;">Ongoing Support</strong>
-                            <p style="color: #64748b; font-size: 0.875rem; margin: 0;">Updates, refinements, and optimization</p>
-                        </div>
+                        <p style="color: #64748b; font-size: 0.875rem; margin: 0;">Consultation capacity</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Examples Section -->
-        <section id="examples" class="section" style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);">
-            <div style="text-align: center; margin-bottom: 4rem;">
-                <h2 style="font-size: 2.5rem; margin-bottom: 2rem; color: #1e293b;">Real Transformations</h2>
-                <p style="font-size: 1.25rem; color: #64748b; max-width: 700px; margin: 0 auto;">
-                    See how domain experts are already transforming their expertise with Wayscribe. 
-                    Same platform, different domains, infinite possibilities.
-                </p>
-            </div>
-
-            <!-- Examples Grid -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
-                
-                <!-- PR Crisis Management -->
-                <div style="background: white; border-radius: 1rem; padding: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.1); border: 1px solid #e2e8f0;">
-                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
-                        <div style="background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%); width: 3rem; height: 3rem; border-radius: 0.75rem; display: flex; align-items: center; justify-content: center;">
-                            <i data-lucide="alert-triangle" style="color: white; width: 1.25rem; height: 1.25rem;"></i>
-                        </div>
-                        <div>
-                            <h3 style="color: #1e293b; margin: 0; font-size: 1.125rem;">PR Crisis Management</h3>
-                            <p style="color: #64748b; margin: 0; font-size: 0.875rem;">Communications Specialist</p>
-                        </div>
-                    </div>
-                    
-                    <div style="margin-bottom: 1.5rem;">
-                        <div style="background: #fef2f2; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                            <p style="font-size: 0.875rem; color: #7f1d1d; margin: 0;"><strong>Before:</strong> Crisis playbook locked in documents, clients call in panic at 2am with no immediate guidance</p>
-                        </div>
-                        <div style="text-align: center; margin: 0.5rem 0;">
-                            <i data-lucide="arrow-down" style="color: #0891b2; width: 1.5rem; height: 1.5rem;"></i>
-                        </div>
-                        <div style="background: #f0fdf4; padding: 1rem; border-radius: 0.5rem;">
-                            <p style="font-size: 0.875rem; color: #14532d; margin: 0;"><strong>After:</strong> 24/7 AI crisis consultant that assesses situations, provides immediate guidance, and generates action plans</p>
-                        </div>
-                    </div>
-                    
-                    <div style="border-top: 1px solid #e2e8f0; padding-top: 1rem;">
-                        <p style="font-size: 0.75rem; color: #64748b; margin: 0; font-style: italic;">
-                            "Now my crisis methodology is available when clients need it most - immediately."
-                        </p>
-                    </div>
+        <section id="examples" class="section examples">
+            <h2 style="font-size: 2.5rem; margin-bottom: 2rem; color: #1e293b; text-align: center;">Real Transformations</h2>
+            
+            <div class="examples-grid">
+                <div class="example">
+                    <h4>Crisis PR Specialist</h4>
+                    <div class="domain">Communications</div>
+                    <p><strong>Before:</strong> Crisis instincts locked in her head, clients panic with no access to her decision-making.</p>
+                    <p><strong>After:</strong> 24/7 software that thinks like her—assessing situations, asking her questions, making her moves.</p>
+                    <div class="quote">"My crisis instincts are available when clients need them most—immediately."</div>
                 </div>
 
-                <!-- Product Strategy -->
-                <div style="background: white; border-radius: 1rem; padding: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.1); border: 1px solid #e2e8f0;">
-                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
-                        <div style="background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%); width: 3rem; height: 3rem; border-radius: 0.75rem; display: flex; align-items: center; justify-content: center;">
-                            <i data-lucide="target" style="color: white; width: 1.25rem; height: 1.25rem;"></i>
-                        </div>
-                        <div>
-                            <h3 style="color: #1e293b; margin: 0; font-size: 1.125rem;">Product Strategy</h3>
-                            <p style="color: #64748b; margin: 0; font-size: 0.875rem;">Product Ops Consultant</p>
-                        </div>
-                    </div>
-                    
-                    <div style="margin-bottom: 1.5rem;">
-                        <div style="background: #fef2f2; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                            <p style="font-size: 0.875rem; color: #7f1d1d; margin: 0;"><strong>Before:</strong> Strategic frameworks trapped in presentations, teams struggle with execution gaps</p>
-                        </div>
-                        <div style="text-align: center; margin: 0.5rem 0;">
-                            <i data-lucide="arrow-down" style="color: #0891b2; width: 1.5rem; height: 1.5rem;"></i>
-                        </div>
-                        <div style="background: #f0fdf4; padding: 1rem; border-radius: 0.5rem;">
-                            <p style="font-size: 0.875rem; color: #14532d; margin: 0;"><strong>After:</strong> AI strategy consultant that diagnoses product ecosystem issues and creates prioritized roadmaps</p>
-                        </div>
-                    </div>
-                    
-                    <div style="border-top: 1px solid #e2e8f0; padding-top: 1rem;">
-                        <p style="font-size: 0.75rem; color: #64748b; margin: 0; font-style: italic;">
-                            "My frameworks now work around the clock, helping teams execute strategy consistently."
-                        </p>
-                    </div>
-                </div>
-
-                <!-- IBS Nutrition -->
-                <div style="background: white; border-radius: 1rem; padding: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.1); border: 1px solid #e2e8f0;">
-                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
-                        <div style="background: linear-gradient(135deg, #059669 0%, #10b981 100%); width: 3rem; height: 3rem; border-radius: 0.75rem; display: flex; align-items: center; justify-content: center;">
-                            <i data-lucide="heart" style="color: white; width: 1.25rem; height: 1.25rem;"></i>
-                        </div>
-                        <div>
-                            <h3 style="color: #1e293b; margin: 0; font-size: 1.125rem;">IBS Nutrition</h3>
-                            <p style="color: #64748b; margin: 0; font-size: 0.875rem;">Nutrition Specialist</p>
-                        </div>
-                    </div>
-                    
-                    <div style="margin-bottom: 1.5rem;">
-                        <div style="background: #fef2f2; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                            <p style="font-size: 0.875rem; color: #7f1d1d; margin: 0;"><strong>Before:</strong> Elimination diet protocols require constant 1:1 guidance, patients struggle between appointments</p>
-                        </div>
-                        <div style="text-align: center; margin: 0.5rem 0;">
-                            <i data-lucide="arrow-down" style="color: #0891b2; width: 1.5rem; height: 1.5rem;"></i>
-                        </div>
-                        <div style="background: #f0fdf4; padding: 1rem; border-radius: 0.5rem;">
-                            <p style="font-size: 0.875rem; color: #14532d; margin: 0;"><strong>After:</strong> AI nutrition coach providing daily meal planning, symptom tracking, and protocol adjustments</p>
-                        </div>
-                    </div>
-                    
-                    <div style="border-top: 1px solid #e2e8f0; padding-top: 1rem;">
-                        <p style="font-size: 0.75rem; color: #64748b; margin: 0; font-style: italic;">
-                            "Patients get personalized guidance every day, not just during our monthly sessions."
-                        </p>
-                    </div>
+                <div class="example">
+                    <h4>IBD Nutrition Specialist</h4>
+                    <div class="domain">Health & Wellness</div>
+                    <p><strong>Before:</strong> Elimination protocol intuition limited to monthly sessions, patients struggle between appointments.</p>
+                    <p><strong>After:</strong> Daily guidance that mirrors her approach—same listening, same adjustments, same personalized touch.</p>
+                    <div class="quote">"Patients get my way of working every day, not just during sessions."</div>
                 </div>
             </div>
 
-            <!-- The Pattern -->
-            <div style="background: white; border-radius: 1rem; padding: 2rem; text-align: center; border-left: 4px solid #0891b2;">
-                <h3 style="color: #1e293b; margin-bottom: 1rem;">The Pattern</h3>
+            <div style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 1rem; padding: 2rem; text-align: center; margin-top: 2rem;">
                 <p style="font-size: 1.125rem; color: #475569; line-height: 1.7; margin: 0;">
-                    <strong style="color: #0891b2;">Structured expertise + AI = Scalable consultation.</strong> 
-                    Whether it's crisis management, product strategy, or nutrition protocols—the platform transforms 
-                    any methodology into always-available guidance that maintains the quality and nuance of human expertise.
+                    <strong style="color: #0891b2;">Same platform, different expertise, consistent magic.</strong> 
+                    Your distinct approach becomes infinitely accessible.
                 </p>
             </div>
         </section>
 
-        <!-- For You Section -->
-        <section id="for-you" class="section" style="background: white;">
-            <div style="text-align: center; margin-bottom: 4rem;">
-                <h2 style="font-size: 2.5rem; margin-bottom: 2rem; color: #1e293b;">Two Strategies to Get Started</h2>
-                <p style="font-size: 1.25rem; color: #64748b; max-width: 700px; margin: 0 auto;">
-                    Choose your starting point based on where you are now and what you want to achieve. 
-                    Both paths use the same platform—just different applications of your expertise.
-                </p>
-            </div>
-
-            <!-- Two Paths Grid -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 4rem;">
-                
-                <!-- Path 1: Lead Generation -->
-                <div style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 1rem; padding: 2.5rem; border: 2px solid #e2e8f0; position: relative;">
-                    <div style="background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%); color: white; padding: 0.5rem 1rem; border-radius: 2rem; font-size: 0.875rem; font-weight: 600; display: inline-block; margin-bottom: 1.5rem;">
-                        Path 1
-                    </div>
+        <!-- Paths Section -->
+        <section id="paths" class="section paths">
+            <h2 style="font-size: 2.5rem; margin-bottom: 2rem; color: #1e293b; text-align: center;">Choose Your Priority</h2>
+            
+            <div class="paths-grid">
+                <div class="path">
+                    <div class="path-badge">Lead Generation</div>
+                    <h3>Enhanced Qualification</h3>
+                    <div class="outcome">Better prospects who've experienced your approach</div>
                     
-                    <h3 style="color: #1e293b; margin-bottom: 1rem; font-size: 1.5rem;">Enhanced Lead Generation</h3>
-                    <p style="color: #16a34a; font-weight: 600; margin-bottom: 1.5rem;">Perfect if you want to improve your current practice with better qualified leads</p>
+                    <ul class="path-list">
+                        <li>Create assessments that demonstrate your consultation style</li>
+                        <li>Qualify prospects through valuable, personalized interactions</li>
+                        <li>Showcase your approach at scale</li>
+                        <li>Convert more because they've experienced how you work</li>
+                    </ul>
                     
-                    <div style="margin-bottom: 2rem;">
-                        <h4 style="color: #1e293b; margin-bottom: 1rem;">How it works:</h4>
-                        <div style="margin-bottom: 1rem;">
-                            <div style="display: flex; align-items: start; gap: 0.75rem;">
-                                <div style="width: 6px; height: 6px; background: #0891b2; border-radius: 50%; margin-top: 0.5rem; flex-shrink: 0;"></div>
-                                <p style="color: #475569; margin: 0; font-size: 0.875rem;">Create AI-powered assessments that demonstrate your methodology</p>
-                            </div>
-                        </div>
-                        <div style="margin-bottom: 1rem;">
-                            <div style="display: flex; align-items: start; gap: 0.75rem;">
-                                <div style="width: 6px; height: 6px; background: #0891b2; border-radius: 50%; margin-top: 0.5rem; flex-shrink: 0;"></div>
-                                <p style="color: #475569; margin: 0; font-size: 0.875rem;">Capture leads through valuable free interactions</p>
-                            </div>
-                        </div>
-                        <div style="margin-bottom: 1rem;">
-                            <div style="display: flex; align-items: start; gap: 0.75rem;">
-                                <div style="width: 6px; height: 6px; background: #0891b2; border-radius: 50%; margin-top: 0.5rem; flex-shrink: 0;"></div>
-                                <p style="color: #475569; margin: 0; font-size: 0.875rem;">Qualify prospects before they book paid consultations</p>
-                            </div>
-                        </div>
-                        <div style="margin-bottom: 1rem;">
-                            <div style="display: flex; align-items: start; gap: 0.75rem;">
-                                <div style="width: 6px; height: 6px; background: #0891b2; border-radius: 50%; margin-top: 0.5rem; flex-shrink: 0;"></div>
-                                <p style="color: #475569; margin: 0; font-size: 0.875rem;">Showcase your expertise at scale</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div style="background: #f0f9ff; border-radius: 0.5rem; padding: 1rem; margin-bottom: 1.5rem;">
-                        <p style="font-size: 0.875rem; color: #0c4a6e; margin: 0;"><strong>Example:</strong> A nutrition consultant offers a free "IBS symptom assessment" that provides initial insights while collecting contact information and qualifying interest in deeper coaching work.</p>
-                    </div>
-                    
-                    <div style="border-top: 1px solid #cbd5e1; padding-top: 1rem;">
-                        <p style="font-size: 0.875rem; color: #64748b; margin: 0;"><strong>Why this works:</strong> Unlike generic AI lead-gen tools that automate outreach, this creates genuine value—prospects experience your actual methodology and see results before they buy.</p>
+                    <div style="background: #f0f9ff; border-radius: 0.5rem; padding: 1rem; font-size: 0.875rem; color: #0c4a6e;">
+                        <strong>Example:</strong> A free "symptom pattern assessment" that works exactly like your intake sessions.
                     </div>
                 </div>
 
-                <!-- Path 2: Productized Revenue -->
-                <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-radius: 1rem; padding: 2.5rem; border: 2px solid #bbf7d0; position: relative;">
-                    <div style="background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); color: white; padding: 0.5rem 1rem; border-radius: 2rem; font-size: 0.875rem; font-weight: 600; display: inline-block; margin-bottom: 1.5rem;">
-                        Path 2
-                    </div>
+                <div class="path">
+                    <div class="path-badge">Revenue Scaling</div>
+                    <h3>Productized Services</h3>
+                    <div class="outcome">New revenue streams beyond 1:1 constraints</div>
                     
-                    <h3 style="color: #1e293b; margin-bottom: 1rem; font-size: 1.5rem;">Productized Revenue Streams</h3>
-                    <p style="color: #16a34a; font-weight: 600; margin-bottom: 1.5rem;">Perfect if you want to scale your expertise into ongoing digital revenue</p>
+                    <ul class="path-list">
+                        <li>Transform your consultation style into full experiences</li>
+                        <li>Serve unlimited clients with software that works like you</li>
+                        <li>Generate recurring revenue</li>
+                        <li>Maintain your consultation quality at infinite scale</li>
+                    </ul>
                     
-                    <div style="margin-bottom: 2rem;">
-                        <h4 style="color: #1e293b; margin-bottom: 1rem;">How it works:</h4>
-                        <div style="margin-bottom: 1rem;">
-                            <div style="display: flex; align-items: start; gap: 0.75rem;">
-                                <div style="width: 6px; height: 6px; background: #16a34a; border-radius: 50%; margin-top: 0.5rem; flex-shrink: 0;"></div>
-                                <p style="color: #475569; margin: 0; font-size: 0.875rem;">Transform your methodology into personalized consultation experiences</p>
-                            </div>
-                        </div>
-                        <div style="margin-bottom: 1rem;">
-                            <div style="display: flex; align-items: start; gap: 0.75rem;">
-                                <div style="width: 6px; height: 6px; background: #16a34a; border-radius: 50%; margin-top: 0.5rem; flex-shrink: 0;"></div>
-                                <p style="color: #475569; margin: 0; font-size: 0.875rem;">Serve unlimited clients with AI-powered guidance systems</p>
-                            </div>
-                        </div>
-                        <div style="margin-bottom: 1rem;">
-                            <div style="display: flex; align-items: start; gap: 0.75rem;">
-                                <div style="width: 6px; height: 6px; background: #16a34a; border-radius: 50%; margin-top: 0.5rem; flex-shrink: 0;"></div>
-                                <p style="color: #475569; margin: 0; font-size: 0.875rem;">Generate recurring revenue beyond 1:1 time constraints</p>
-                            </div>
-                        </div>
-                        <div style="margin-bottom: 1rem;">
-                            <div style="display: flex; align-items: start; gap: 0.75rem;">
-                                <div style="width: 6px; height: 6px; background: #16a34a; border-radius: 50%; margin-top: 0.5rem; flex-shrink: 0;"></div>
-                                <p style="color: #475569; margin: 0; font-size: 0.875rem;">Maintain the quality of personal consultation at scale</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div style="background: #ecfdf5; border-radius: 0.5rem; padding: 1rem; margin-bottom: 1.5rem;">
-                        <p style="font-size: 0.875rem; color: #14532d; margin: 0;"><strong>Example:</strong> The same nutrition consultant creates a comprehensive AI coach that guides clients through symptom assessment, elimination planning, and ongoing adjustments—available 24/7 with personalized recommendations.</p>
-                    </div>
-                    
-                    <div style="border-top: 1px solid #bbf7d0; padding-top: 1rem;">
-                        <p style="font-size: 0.875rem; color: #64748b; margin: 0;"><strong>Why this works:</strong> AI-powered freemium for expertise—prospects get real consultation value while you build scalable revenue streams that work while you sleep.</p>
+                    <div style="background: #ecfdf5; border-radius: 0.5rem; padding: 1rem; font-size: 0.875rem; color: #14532d;">
+                        <strong>Example:</strong> Comprehensive elimination protocol software that guides clients exactly like you would.
                     </div>
                 </div>
             </div>
 
-            <!-- Common Benefits -->
-            <div style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 1rem; padding: 2rem; margin-bottom: 3rem;">
-                <h3 style="text-align: center; color: #1e293b; margin-bottom: 2rem;">What Both Paths Deliver</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
-                    <div style="text-align: center;">
-                        <div style="background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%); width: 3rem; height: 3rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
-                            <i data-lucide="users" style="color: white; width: 1.25rem; height: 1.25rem;"></i>
-                        </div>
-                        <h4 style="color: #1e293b; margin-bottom: 0.5rem;">Better Qualified Prospects</h4>
-                        <p style="color: #64748b; font-size: 0.875rem;">People who engage have already experienced your value</p>
-                    </div>
-                    <div style="text-align: center;">
-                        <div style="background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%); width: 3rem; height: 3rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
-                            <i data-lucide="clock" style="color: white; width: 1.25rem; height: 1.25rem;"></i>
-                        </div>
-                        <h4 style="color: #1e293b; margin-bottom: 0.5rem;">More Time for High-Value Work</h4>
-                        <p style="color: #64748b; font-size: 0.875rem;">AI handles initial guidance, you focus on complex cases</p>
-                    </div>
-                    <div style="text-align: center;">
-                        <div style="background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%); width: 3rem; height: 3rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
-                            <i data-lucide="trending-up" style="color: white; width: 1.25rem; height: 1.25rem;"></i>
-                        </div>
-                        <h4 style="color: #1e293b; margin-bottom: 0.5rem;">Expanded Reach</h4>
-                        <p style="color: #64748b; font-size: 0.875rem;">Help people who couldn't find or afford you before</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Why Now -->
-            <div style="background: white; border: 2px solid #e2e8f0; border-radius: 1rem; padding: 2rem; text-align: center;">
-                <h3 style="color: #1e293b; margin-bottom: 1rem;">Why Now?</h3>
+            <div style="background: white; border-radius: 1rem; padding: 2rem; text-align: center; margin-top: 2rem;">
+                <h3 style="color: #1e293b; margin-bottom: 1rem;">Both Paths Deliver</h3>
                 <p style="font-size: 1.125rem; color: #475569; line-height: 1.7; margin: 0;">
-                    The convergence of advanced AI and new connection protocols makes this accessible for the first time. 
-                    What previously required tech company resources is now within reach of any expert with organized knowledge. 
-                    <strong style="color: #0891b2;">The infrastructure finally exists to turn your expertise into scalable consultation services.</strong>
+                    Better qualified prospects. More time for complex cases. Expanded impact. 
+                    <strong style="color: #0891b2;">Your consultation magic, no longer constrained by your calendar.</strong>
                 </p>
             </div>
         </section>
 
         <!-- Early Access Section -->
         <section id="early-access" class="section early-access">
-            <h2>Join Our Early Validation</h2>
+            <h2>Join Early Validation</h2>
             <p>
-                We're working with select methodology-based consultants to validate and refine this vision. 
-                No technical knowledge required - we handle the complexity while you focus on your expertise.
+                We're working with select methodology-based consultants to validate this vision. 
+                No technical knowledge required—we handle the complexity.
             </p>
             
-            <!-- Contact Form -->
-            <div style="background: rgba(255, 255, 255, 0.1); border-radius: 1rem; padding: 2rem; max-width: 600px; margin: 2rem auto 0; backdrop-filter: blur(10px);">
-                <form action="https://formspree.io/f/xzzgowwr" method="POST" style="display: flex; flex-direction: column; gap: 1.5rem;">
-                    
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                        <div>
-                            <label style="display: block; color: #e2e8f0; font-weight: 500; margin-bottom: 0.5rem; font-size: 0.875rem;">
-                                Name *
-                            </label>
-                            <input 
-                                type="text" 
-                                name="name" 
-                                required
-                                style="width: 100%; padding: 0.75rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 0.5rem; background: rgba(255,255,255,0.1); color: white; font-size: 1rem;"
-                                placeholder="Your name"
-                            >
+            <div class="form-container">
+                <form action="https://formspree.io/f/xzzgowwr" method="POST">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Name *</label>
+                            <input type="text" name="name" required placeholder="Your name">
                         </div>
-                        <div>
-                            <label style="display: block; color: #e2e8f0; font-weight: 500; margin-bottom: 0.5rem; font-size: 0.875rem;">
-                                Email *
-                            </label>
-                            <input 
-                                type="email" 
-                                name="email" 
-                                required
-                                style="width: 100%; padding: 0.75rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 0.5rem; background: rgba(255,255,255,0.1); color: white; font-size: 1rem;"
-                                placeholder="your@email.com"
-                            >
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <input type="email" name="email" required placeholder="your@email.com">
                         </div>
                     </div>
                     
-                    <div>
-                        <label style="display: block; color: #e2e8f0; font-weight: 500; margin-bottom: 0.5rem; font-size: 0.875rem;">
-                            What type of consultant are you? *
-                        </label>
-                        <select 
-                            name="consultant_type" 
-                            required
-                            style="width: 100%; padding: 0.75rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 0.5rem; background: rgba(255,255,255,0.1); color: white; font-size: 1rem;"
-                        >
-                            <option value="" style="color: #374151;">Select your domain...</option>
-                            <option value="business_coach" style="color: #374151;">Business/Leadership Coach</option>
-                            <option value="life_coach" style="color: #374151;">Life/Personal Development Coach</option>
-                            <option value="health_wellness" style="color: #374151;">Health/Wellness Specialist</option>
-                            <option value="pr_communications" style="color: #374151;">PR/Communications</option>
-                            <option value="product_strategy" style="color: #374151;">Product/Strategy Consultant</option>
-                            <option value="sales_marketing" style="color: #374151;">Sales/Marketing Specialist</option>
-                            <option value="other" style="color: #374151;">Other (please specify in message)</option>
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label>Consultant Type *</label>
+                        <select name="consultant_type" required>
+                            <option value="">Select your domain...</option>
+                            <option value="business_coach">Business/Leadership Coach</option>
+                            <option value="life_coach">Life/Personal Development Coach</option>
+                            <option value="health_wellness">Health/Wellness Specialist</option>
+                            <option value="pr_communications">PR/Communications</option>
+                            <option value="product_strategy">Product/Strategy Consultant</option>
+                            <option value="other">Other</option>
                         </select>
                     </div>
                     
-                    <div>
-                        <label style="display: block; color: #e2e8f0; font-weight: 500; margin-bottom: 0.5rem; font-size: 0.875rem;">
-                            Which path interests you most?
-                        </label>
-                        <div style="display: flex; gap: 1rem;">
-                            <label style="display: flex; align-items: center; gap: 0.5rem; color: #cbd5e1; cursor: pointer;">
-                                <input type="radio" name="path_interest" value="lead_generation" style="margin: 0;">
-                                <span style="font-size: 0.875rem;">Enhanced Lead Generation</span>
-                            </label>
-                            <label style="display: flex; align-items: center; gap: 0.5rem; color: #cbd5e1; cursor: pointer;">
-                                <input type="radio" name="path_interest" value="productized_revenue" style="margin: 0;">
-                                <span style="font-size: 0.875rem;">Productized Revenue</span>
-                            </label>
-                            <label style="display: flex; align-items: center; gap: 0.5rem; color: #cbd5e1; cursor: pointer;">
-                                <input type="radio" name="path_interest" value="not_sure" style="margin: 0;">
-                                <span style="font-size: 0.875rem;">Not sure yet</span>
-                            </label>
-                        </div>
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label>Your Consultation Approach</label>
+                        <textarea name="methodology" rows="3" placeholder="What makes your way of working unique? What patterns do you see that others miss?"></textarea>
                     </div>
                     
-                    <div>
-                        <label style="display: block; color: #e2e8f0; font-weight: 500; margin-bottom: 0.5rem; font-size: 0.875rem;">
-                            Tell us about your methodology/expertise
-                        </label>
-                        <textarea 
-                            name="methodology" 
-                            rows="4"
-                            style="width: 100%; padding: 0.75rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 0.5rem; background: rgba(255,255,255,0.1); color: white; font-size: 1rem; resize: vertical;"
-                            placeholder="What frameworks, assessments, or structured approaches do you use with clients? What makes your methodology unique?"
-                        ></textarea>
-                    </div>
-                    
-                    <div>
-                        <label style="display: block; color: #e2e8f0; font-weight: 500; margin-bottom: 0.5rem; font-size: 0.875rem;">
-                            Additional message
-                        </label>
-                        <textarea 
-                            name="message" 
-                            rows="3"
-                            style="width: 100%; padding: 0.75rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 0.5rem; background: rgba(255,255,255,0.1); color: white; font-size: 1rem; resize: vertical;"
-                            placeholder="Any questions or additional context you'd like to share?"
-                        ></textarea>
-                    </div>
-                    
-                    <button 
-                        type="submit"
-                        style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 1rem 2rem; border-radius: 0.5rem; border: none; font-size: 1.125rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease;"
-                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 25px rgba(8, 145, 178, 0.3)'"
-                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'"
-                    >
-                        Get Started Today
-                    </button>
-                    
+                    <button type="submit" class="form-submit">Get Started Today</button>
                 </form>
             </div>
             
-            <p style="font-size: 0.875rem; color: #94a3b8; margin-top: 1rem; text-align: center;">
-                We'll reach out within 48 hours to discuss your specific use case
+            <p style="font-size: 0.875rem; color: #94a3b8; margin-top: 1rem;">
+                Response within 48 hours
             </p>
         </section>
     </main>
