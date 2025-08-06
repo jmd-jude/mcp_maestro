@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wayscribe Platform Architecture</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #5a67d8;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .nav-btn {
+            padding: 0.5rem 1rem;
+            background: none;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+            color: #4a5568;
+        }
+        
+        .nav-btn:hover, .nav-btn.active {
+            background: #5a67d8;
+            color: white;
+            border-color: #5a67d8;
+        }
+        
+        .slide {
+            display: none;
+            min-height: 100vh;
+            padding: 6rem 2rem 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease-out;
+        }
+        
+        .slide.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            padding: 3rem;
+            min-height: calc(100vh - 8rem);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+            text-align: center;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #4a5568;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+        
+        h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #5a67d8;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #718096;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .card {
+            background: #f7fafc;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-left: 4px solid #5a67d8;
+        }
+        
+        .card h4 {
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .card p {
+            color: #4a5568;
+            font-size: 0.9rem;
+        }
+        
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .tech-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .tech-item h4 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .architecture-diagram {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .comparison-item {
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        
+        .platform-side {
+            background: #e1f5fe;
+            border-left: 4px solid #0288d1;
+        }
+        
+        .domain-side {
+            background: #fff3e0;
+            border-left: 4px solid #f57c00;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .stat {
+            flex: 1;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #5a67d8;
+            display: block;
+        }
+        
+        .stat-label {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+        
+        ul {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+            color: #4a5568;
+        }
+        
+        .highlight-box {
+            background: #f0fff4;
+            border: 1px solid #9ae6b4;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .warning-box {
+            background: #fef5e7;
+            border: 1px solid #f6ad55;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        code {
+            background: #edf2f7;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 0.9rem;
+        }
+        
+        pre {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        .footer-nav {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .nav-arrow {
+            width: 40px;
+            height: 40px;
+            background: #5a67d8;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        
+        .nav-arrow:hover {
+            background: #4c51bf;
+            transform: scale(1.1);
+        }
+        
+        .nav-arrow:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+            transform: none;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="logo">Wayscribe Platform</div>
+            <div class="nav-buttons">
+                <button class="nav-btn active" onclick="showSlide(0)">Overview</button>
+                <button class="nav-btn" onclick="showSlide(1)">Current Stack</button>
+                <button class="nav-btn" onclick="showSlide(2)">Architecture</button>
+                <button class="nav-btn" onclick="showSlide(3)">Platform vs Domain</button>
+                <button class="nav-btn" onclick="showSlide(4)">Deep Dive</button>
+                <button class="nav-btn" onclick="showSlide(5)">Next Steps</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Slide 1: Overview -->
+    <div class="slide active">
+        <div class="container">
+            <h1>Wayscribe Platform Architecture</h1>
+            <p class="subtitle">Transforming Expert Methodologies into AI-Powered Consultation Experiences</p>
+            
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-number">~90%</span>
+                    <span class="stat-label">Token Cost Reduction</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">150KB</span>
+                    <span class="stat-label">Compressed Expertise</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">Sub-Second</span>
+                    <span class="stat-label">Response Times</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">∞</span>
+                    <span class="stat-label">Scaling Potential</span>
+                </div>
+            </div>
+            
+            <div class="grid">
+                <div class="card">
+                    <h4>Core Innovation</h4>
+                    <p>Separates reusable platform infrastructure from domain-specific expertise, enabling rapid deployment of new expert domains through configuration rather than code changes.</p>
+                </div>
+                <div class="card">
+                    <h4>Current Implementation</h4>
+                    <p>IBD Nutrition Navigator demonstrates the platform with evidence-based medical consultation, featuring the complete 5-step framework and 76 research references.</p>
+                </div>
+                <div class="card">
+                    <h4>Business Model</h4>
+                    <p>"Expertise-as-a-Service" - democratizing access to high-level consultation across any field through AI-enhanced expert methodologies.</p>
+                </div>
+                <div class="card">
+                    <h4>Technical Philosophy</h4>
+                    <p>"Jazz, not symphony" - providing structured frameworks for improvisation rather than rigid scripts, enabling personalized consultation experiences.</p>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <h3>Engineering Vision</h3>
+                <p>Multi-tenant platform enabling rapid deployment of expert consultation experiences across any domain. Current proof-of-concept demonstrates core platform concepts with single domain implementation.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Current Stack -->
+    <div class="slide">
+        <div class="container">
+            <h2>Current Technical Stack</h2>
+            <p class="subtitle">Production-ready MVP built by non-programmers</p>
+            
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <h4>Frontend</h4>
+                    <p>React 18 + Vite + Tailwind</p>
+                    <small>Chat interface, asset management</small>
+                </div>
+                <div class="tech-item">
+                    <h4>Backend</h4>
+                    <p>Node.js + Express</p>
+                    <small>API server, session management</small>
+                </div>
+                <div class="tech-item">
+                    <h4>AI Provider</h4>
+                    <p>Anthropic Claude Sonnet 4</p>
+                    <small>Natural language consultation</small>
+                </div>
+                <div class="tech-item">
+                    <h4>Caching</h4>
+                    <p>Prompt Caching</p>
+                    <small>~90% token cost savings</small>
+                </div>
+                <div class="tech-item">
+                    <h4>File Processing</h4>
+                    <p>Multer + pdf-parse</p>
+                    <small>Document upload & extraction</small>
+                </div>
+                <div class="tech-item">
+                    <h4>Deployment</h4>
+                    <p>Railway</p>
+                    <small>Cloud hosting with auto-deploy</small>
+                </div>
+            </div>
+            
+            <h3>Key Performance Metrics</h3>
+            <ul>
+                <li><strong>Context Compression:</strong> 30+ files → 150KB structured expertise</li>
+                <li><strong>API Efficiency:</strong> Prompt caching reduces costs by ~90%</li>
+                <li><strong>Response Time:</strong> Sub-second consultation responses</li>
+                <li><strong>Asset Generation:</strong> Automatic document creation from conversations</li>
+                <li><strong>Session Management:</strong> In-memory storage with 30min TTL</li>
+            </ul>
+            
+            <div class="warning-box">
+                <h4>Current Limitations</h4>
+                <ul>
+                    <li>In-memory session storage (not horizontally scalable)</li>
+                    <li>No database or persistent storage</li>
+                    <li>Single-tenant deployment</li>
+                    <li>Basic error handling and monitoring</li>
+                    <li>No user authentication or authorization</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Architecture -->
+    <div class="slide">
+        <div class="container">
+            <h2>System Architecture</h2>
+            <p class="subtitle">Component interactions and data flow</p>
+            
+            <div class="architecture-diagram">
+                <svg viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
+                    <!-- Client Layer -->
+                    <rect x="50" y="50" width="180" height="70" rx="8" fill="#e1f5fe" stroke="#01579b" stroke-width="2"/>
+                    <text x="140" y="75" font-size="14" font-weight="bold" text-anchor="middle">Client Layer</text>
+                    <text x="140" y="95" font-size="12" text-anchor="middle">React Frontend</text>
+                    <text x="140" y="108" font-size="12" text-anchor="middle">Chat + Assets</text>
+
+                    <!-- API Layer -->
+                    <rect x="270" y="50" width="180" height="70" rx="8" fill="#f3e5f5" stroke="#4a148c" stroke-width="2"/>
+                    <text x="360" y="75" font-size="14" font-weight="bold" text-anchor="middle">API Layer</text>
+                    <text x="360" y="95" font-size="12" text-anchor="middle">Express.js Server</text>
+                    <text x="360" y="108" font-size="12" text-anchor="middle">Session Management</text>
+
+                    <!-- AI Integration -->
+                    <rect x="490" y="50" width="180" height="70" rx="8" fill="#e8f5e8" stroke="#2e7d32" stroke-width="2"/>
+                    <text x="580" y="75" font-size="14" font-weight="bold" text-anchor="middle">AI Integration</text>
+                    <text x="580" y="95" font-size="12" text-anchor="middle">Claude API</text>
+                    <text x="580" y="108" font-size="12" text-anchor="middle">+ Prompt Caching</text>
+
+                    <!-- Knowledge System -->
+                    <rect x="270" y="170" width="400" height="200" rx="8" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+                    <text x="470" y="195" font-size="16" font-weight="bold" text-anchor="middle">Domain Knowledge System</text>
+                    
+                    <!-- 5 Layer boxes -->
+                    <rect x="290" y="210" width="70" height="50" rx="4" fill="white" stroke="#666"/>
+                    <text x="325" y="235" font-size="10" text-anchor="middle">Platform</text>
+                    <text x="325" y="248" font-size="10" text-anchor="middle">Philosophy</text>
+                    
+                    <rect x="370" y="210" width="70" height="50" rx="4" fill="white" stroke="#666"/>
+                    <text x="405" y="235" font-size="10" text-anchor="middle">Domain</text>
+                    <text x="405" y="248" font-size="10" text-anchor="middle">Orientation</text>
+                    
+                    <rect x="450" y="210" width="70" height="50" rx="4" fill="white" stroke="#666"/>
+                    <text x="485" y="235" font-size="10" text-anchor="middle">Config</text>
+                    
+                    <rect x="530" y="210" width="70" height="50" rx="4" fill="white" stroke="#666"/>
+                    <text x="565" y="235" font-size="10" text-anchor="middle">Core</text>
+                    <text x="565" y="248" font-size="10" text-anchor="middle">Expertise</text>
+                    
+                    <rect x="450" y="270" width="70" height="50" rx="4" fill="white" stroke="#666"/>
+                    <text x="485" y="298" font-size="10" text-anchor="middle">Templates</text>
+
+                    <!-- Context Bundle -->
+                    <rect x="720" y="170" width="150" height="70" rx="8" fill="#e1f5fe" stroke="#01579b" stroke-width="2"/>
+                    <text x="795" y="195" font-size="14" font-weight="bold" text-anchor="middle">Context Bundle</text>
+                    <text x="795" y="215" font-size="12" text-anchor="middle">build-context.js</text>
+                    <text x="795" y="228" font-size="12" text-anchor="middle">150KB compressed</text>
+
+                    <!-- Asset Pipeline -->
+                    <rect x="50" y="170" width="180" height="100" rx="8" fill="#f3e5f5" stroke="#4a148c" stroke-width="2"/>
+                    <text x="140" y="195" font-size="14" font-weight="bold" text-anchor="middle">Asset Pipeline</text>
+                    <rect x="70" y="210" width="140" height="20" rx="4" fill="white" stroke="#666"/>
+                    <text x="140" y="223" font-size="10" text-anchor="middle">Response Analysis</text>
+                    <rect x="70" y="240" width="140" height="20" rx="4" fill="white" stroke="#666"/>
+                    <text x="140" y="253" font-size="10" text-anchor="middle">Template Engine</text>
+
+                    <!-- Data Flow Arrows -->
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#2563eb"/>
+                        </marker>
+                    </defs>
+                    
+                    <line x1="230" y1="85" x2="270" y2="85" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <line x1="450" y1="85" x2="490" y2="85" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <line x1="470" y1="120" x2="470" y2="170" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <line x1="670" y1="205" x2="720" y2="205" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <line x1="230" y1="220" x2="270" y2="220" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowhead)"/>
+                </svg>
+            </div>
+            
+            <div class="grid">
+                <div class="card">
+                    <h4>Context Compression</h4>
+                    <p>Build process compresses 30+ domain files into single 150KB context bundle for efficient AI processing.</p>
+                </div>
+                <div class="card">
+                    <h4>Session Flow</h4>
+                    <p>Stateful conversations with automatic cleanup. Each session maintains conversation history and domain context.</p>
+                </div>
+                <div class="card">
+                    <h4>Asset Detection</h4>
+                    <p>Real-time analysis of AI responses to automatically detect and extract generated documents.</p>
+                </div>
+                <div class="card">
+                    <h4>Configuration-Driven</h4>
+                    <p>AI behavior controlled through JSON configurations rather than code changes, enabling rapid domain customization.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Platform vs Domain -->
+    <div class="slide">
+        <div class="container">
+            <h2>Platform vs Domain Separation</h2>
+            <p class="subtitle">The key to rapid expert onboarding and scalability</p>
+            
+            <div class="comparison">
+                <div class="comparison-item platform-side">
+                    <h3>Platform Components (Reusable)</h3>
+                    <ul>
+                        <li><strong>Frontend:</strong> Chat interface, asset management, file upload</li>
+                        <li><strong>Backend:</strong> Session management, Claude integration, asset pipeline</li>
+                        <li><strong>Knowledge System:</strong> Context bundler, config parser, template engine</li>
+                        <li><strong>Infrastructure:</strong> Deployment configs, Docker setup, monitoring</li>
+                    </ul>
+                    
+                    <h4>Directory Structure:</h4>
+                    <pre>wayscribe-platform/
+├── frontend/
+│   ├── chat-interface/
+│   ├── asset-management/
+│   └── file-upload/
+├── backend/
+│   ├── session-management/
+│   ├── claude-integration/
+│   └── asset-pipeline/
+└── infrastructure/</pre>
+                </div>
+                
+                <div class="comparison-item domain-side">
+                    <h3>Domain Components (Expert-Specific)</h3>
+                    <ul>
+                        <li><strong>Expertise:</strong> Domain knowledge, research, methodologies</li>
+                        <li><strong>Configuration:</strong> Behavioral settings, consultation flow</li>
+                        <li><strong>Templates:</strong> Asset structures, deliverable formats</li>
+                        <li><strong>Branding:</strong> Welcome messages, domain-specific UI</li>
+                    </ul>
+                    
+                    <h4>Directory Structure:</h4>
+                    <pre>domain-ibd-nutrition/
+├── expertise/
+│   ├── ibd-nutrition-navigator.md
+│   └── system-instructions.md
+├── configuration/
+│   ├── orchestration-config.json
+│   └── synthesis-config.json
+└── templates/</pre>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <h3>Configuration-Driven Behavior Example</h3>
+                <pre>{
+  "orchestration_behavior": {
+    "information_gathering_intensity": 8,
+    "guidance_directiveness": 6, 
+    "conversation_pacing": 7
+  }
+}</pre>
+                <p>These numerical settings control AI consultation personality without code changes. Different experts can have completely different consultation styles through configuration alone.</p>
+            </div>
+            
+            <h3>Onboarding New Experts</h3>
+            <div class="grid">
+                <div class="card">
+                    <h4>Upload Methodology</h4>
+                    <p>Expert provides consultation materials, frameworks, and example sessions.</p>
+                </div>
+                <div class="card">
+                    <h4>Configure Behavior</h4>
+                    <p>Set consultation personality, pacing, and expertise focus through JSON configs.</p>
+                </div>
+                <div class="card">
+                    <h4>Define Assets</h4>
+                    <p>Specify what documents/deliverables the expert typically creates for clients.</p>
+                </div>
+                <div class="card">
+                    <h4>Deploy Domain</h4>
+                    <p>Automatic bundling and deployment of new expert domain to platform.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Deep Dive -->
+    <div class="slide">
+        <div class="container">
+            <h2>Engineering Deep Dive</h2>
+            <p class="subtitle">Key technical innovations and implementation details</p>
+            
+            <div class="grid">
+                <div class="card">
+                    <h4>Context Compression & Caching</h4>
+                    <p><strong>Process:</strong> <code>build-context.js</code> merges 30+ files into single context</p>
+                    <p><strong>Size:</strong> ~150KB of structured expertise</p>
+                    <p><strong>Caching:</strong> Anthropic prompt caching reduces API costs by ~90%</p>
+                    <p><strong>Performance:</strong> Sub-second response times with cached context</p>
+                </div>
+                
+                <div class="card">
+                    <h4>Asset Detection Pipeline</h4>
+                    <p><strong>Pattern Matching:</strong> Regex detection of markdown headers</p>
+                    <p><strong>Content Extraction:</strong> Automatic asset boundary detection</p>
+                    <p><strong>Template Mapping:</strong> Config-driven asset type mapping</p>
+                    <p><strong>Client Notification:</strong> Real-time asset creation updates</p>
+                </div>
+            </div>
+            
+            <h3>Session Architecture</h3>
+            <pre>sessions.set(sessionId, {
+  history: [...conversationMessages],
+  lastActivity: timestamp,
+  cacheCreatedAt: timestamp,
+  domainConfig: {...}
+})</pre>
+            
+            <div class="comparison">
+                <div class="comparison-item platform-side">
+                    <h4>Current Strengths</h4>
+                    <ul>
+                        <li>Elegant domain knowledge encoding</li>
+                        <li>Efficient AI API usage (90% cost reduction)</li>
+                        <li>Clean platform/domain separation</li>
+                        <li>Configuration-driven behavior</li>
+                        <li>Automatic asset generation</li>
+                        <li>Rapid expert onboarding capability</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-item domain-side">
+                    <h4>Technical Debt</h4>
+                    <ul>
+                        <li>In-memory session storage (not scalable)</li>
+                        <li>No database or persistent storage</li>
+                        <li>Synchronous file processing</li>
+                        <li>Basic error handling and retry logic</li>
+                        <li>Minimal observability and monitoring</li>
+                        <li>No user authentication or authorization</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="warning-box">
+                <h4>Scaling Bottlenecks</h4>
+                <ul>
+                    <li><strong>Sessions:</strong> In-memory storage limits horizontal scaling</li>
+                    <li><strong>Multi-tenancy:</strong> No domain isolation or user management</li>
+                    <li><strong>File Processing:</strong> Blocking operations affect performance</li>
+                    <li><strong>Rate Limiting:</strong> Basic implementation insufficient for production</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Next Steps -->
+    <div class="slide">
+        <div class="container">
+            <h2>Engineering Roadmap</h2>
+            <p class="subtitle">Path to production-scale multi-tenant platform</p>
+            
+            <div class="grid">
+                <div class="card">
+                    <h4>Phase 1: Infrastructure Foundation</h4>
+                    <ul>
+                        <li>Database integration (PostgreSQL + Redis)</li>
+                        <li>User authentication & authorization</li>
+                        <li>Persistent session storage</li>
+                        <li>Basic multi-tenancy support</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h4>Phase 2: Platform Features</h4>
+                    <ul>
+                        <li>Domain management dashboard</li>
+                        <li>Analytics & usage tracking</li>
+                        <li>A/B testing framework</li>
+                        <li>Expert onboarding tools</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h4>Phase 3: Scale & Performance</h4>
+                    <ul>
+                        <li>Horizontal scaling architecture</li>
+                        <li>Microservices decomposition</li>
+                        <li>CDN integration</li>
+                        <li>Advanced caching strategies</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h4>Phase 4: Developer Experience</h4>
+                    <ul>
+                        <li>Domain SDK/CLI tools</li>
+                        <li>Configuration validation</li>
+                        <li>Local development environment</li>
+                        <li>Automated testing suite</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Technical Priorities</h3>
+            
+            <div class="highlight-box">
+                <h4>Immediate Needs (Next 2-3 months)</h4>
+                <ul>
+                    <li><strong>Database Design:</strong> Schema for sessions, domains, users, analytics</li>
+                    <li><strong>Authentication:</strong> JWT-based auth with role-based access</li>
+                    <li><strong>API Refactoring:</strong> RESTful endpoints with proper error handling</li>
+                    <li><strong>Domain Isolation:</strong> Multi-tenant architecture design</li>
+                </ul>
+            </div>
+            
+            <div class="warning-box">
+                <h4>Architecture Decisions Needed</h4>
+                <ul>
+                    <li><strong>Deployment:</strong> Kubernetes vs. serverless vs. traditional hosting</li>
+                    <li><strong>Database:</strong> Relational vs. NoSQL for domain knowledge storage</li>
+                    <li><strong>Caching:</strong> Redis vs. in-memory vs. CDN strategies</li>
+                    <li><strong>File Storage:</strong> S3 vs. database BLOBs for uploaded documents</li>
+                    <li><strong>Monitoring:</strong> APM solution for performance and error tracking</li>
+                </ul>
+            </div>
+            
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-number">6-12</span>
+                    <span class="stat-label">Months to Production</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">2-3</span>
+                    <span class="stat-label">Engineering Hires Needed</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">$200K-400K</span>
+                    <span class="stat-label">Development Investment</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">100+</span>
+                    <span class="stat-label">Expert Domains Potential</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="footer-nav">
+        <button class="nav-arrow" onclick="previousSlide()" id="prevBtn">‹</button>
+        <button class="nav-arrow" onclick="nextSlide()" id="nextBtn">›</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const navButtons = document.querySelectorAll('.nav-btn');
+        
+        function showSlide(index) {
+            // Hide all slides
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Remove active from nav buttons
+            navButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected slide
+            slides[index].classList.add('active');
+            navButtons[index].classList.add('active');
+            currentSlide = index;
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = (index === 0);
+            document.getElementById('nextBtn').disabled = (index === slides.length - 1);
+            
+            // Animate slide transition
+            setTimeout(() => {
+                slides[index].style.opacity = '1';
+                slides[index].style.transform = 'translateY(0)';
+            }, 50);
+        }
+        
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+        
+        function previousSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') previousSlide();
+        });
+        
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
