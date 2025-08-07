@@ -315,7 +315,7 @@
             <h1>Wayscribe Platform Architecture</h1>
             <p class="subtitle">Transforming Expert Methodologies into AI-Powered Consultation Experiences</p>
             
-            <div class="stats">
+        <!--<div class="stats">
                 <div class="stat">
                     <span class="stat-number">~90%</span>
                     <span class="stat-label">Token Cost Reduction</span>
@@ -332,7 +332,7 @@
                     <span class="stat-number">∞</span>
                     <span class="stat-label">Scaling Potential</span>
                 </div>
-            </div>
+            </div> -->
             
             <div class="grid">
                 <div class="card">
@@ -341,16 +341,16 @@
                 </div>
                 <div class="card">
                     <h4>Current Implementation</h4>
-                    <p>IBD Nutrition Navigator demonstrates the platform with evidence-based medical consultation, featuring the complete 5-step framework and 76 research references.</p>
+                    <p>IBD Nutrition Navigator demonstrates the platform with evidence- and experience-based consultation, featuring the complete 5-step framework.</p>
                 </div>
                 <div class="card">
                     <h4>Business Model</h4>
                     <p>"Expertise-as-a-Service" - democratizing access to high-level consultation across any field through AI-enhanced expert methodologies.</p>
                 </div>
-                <div class="card">
+                <!--<div class="card">
                     <h4>Technical Philosophy</h4>
                     <p>"Jazz, not symphony" - providing structured frameworks for improvisation rather than rigid scripts, enabling personalized consultation experiences.</p>
-                </div>
+                </div>-->
             </div>
             
             <div class="highlight-box">
@@ -385,7 +385,7 @@
                 <div class="tech-item">
                     <h4>Caching</h4>
                     <p>Prompt Caching</p>
-                    <small>~90% token cost savings</small>
+                    <small>Efficient token management</small>
                 </div>
                 <div class="tech-item">
                     <h4>File Processing</h4>
@@ -399,10 +399,10 @@
                 </div>
             </div>
             
-            <h3>Key Performance Metrics</h3>
+            <h3>How It Works Today</h3>
             <ul>
-                <li><strong>Context Compression:</strong> 30+ files → 150KB structured expertise</li>
-                <li><strong>API Efficiency:</strong> Prompt caching reduces costs by ~90%</li>
+                <li><strong>Context Compression:</strong> ~30+ files → up to ~500KB structured expertise, optmized for Wayscribe platform</li>
+                <li><strong>API Efficiency:</strong> Utilizes prompt caching to produce better UX and manage costs</li>
                 <li><strong>Response Time:</strong> Sub-second consultation responses</li>
                 <li><strong>Asset Generation:</strong> Automatic document creation from conversations</li>
                 <li><strong>Session Management:</strong> In-memory storage with 30min TTL</li>
@@ -514,7 +514,7 @@
                 </div>
                 <div class="card">
                     <h4>Configuration-Driven</h4>
-                    <p>AI behavior controlled through JSON configurations rather than code changes, enabling rapid domain customization.</p>
+                    <p>AI behavior controlled through configurations rather than code changes, enabling rapid domain customization.</p>
                 </div>
             </div>
         </div>
@@ -555,7 +555,7 @@
                         <li><strong>Expertise:</strong> Domain knowledge, research, methodologies</li>
                         <li><strong>Configuration:</strong> Behavioral settings, consultation flow</li>
                         <li><strong>Templates:</strong> Asset structures, deliverable formats</li>
-                        <li><strong>Branding:</strong> Welcome messages, domain-specific UI</li>
+                        <li><strong>Branding:</strong> Domain-specific messaging</li>
                     </ul>
                     
                     <h4>Directory Structure:</h4>
@@ -589,8 +589,8 @@
                     <p>Expert provides consultation materials, frameworks, and example sessions.</p>
                 </div>
                 <div class="card">
-                    <h4>Configure Behavior</h4>
-                    <p>Set consultation personality, pacing, and expertise focus through JSON configs.</p>
+                    <h4>Configure Objectives & Behavior</h4>
+                    <p>Set consultation personality, pacing, goals and expertise focus through configs.</p>
                 </div>
                 <div class="card">
                     <h4>Define Assets</h4>
@@ -614,8 +614,8 @@
                 <div class="card">
                     <h4>Context Compression & Caching</h4>
                     <p><strong>Process:</strong> <code>build-context.js</code> merges 30+ files into single context</p>
-                    <p><strong>Size:</strong> ~150KB of structured expertise</p>
-                    <p><strong>Caching:</strong> Anthropic prompt caching reduces API costs by ~90%</p>
+                    <!--<p><strong>Size:</strong> ~150KB of structured expertise</p>-->
+                    <!--<p><strong>Caching:</strong> Anthropic prompt caching reduces API costs by ~90%</p>-->
                     <p><strong>Performance:</strong> Sub-second response times with cached context</p>
                 </div>
                 
@@ -641,7 +641,7 @@
                     <h4>Current Strengths</h4>
                     <ul>
                         <li>Elegant domain knowledge encoding</li>
-                        <li>Efficient AI API usage (90% cost reduction)</li>
+                        <li>Strategic & Efficient AI API usage</li>
                         <li>Clean platform/domain separation</li>
                         <li>Configuration-driven behavior</li>
                         <li>Automatic asset generation</li>
@@ -684,7 +684,7 @@
                 <div class="card">
                     <h4>Phase 1: Infrastructure Foundation</h4>
                     <ul>
-                        <li>Database integration (PostgreSQL + Redis)</li>
+                        <li>Database integration (PostgreSQL + Redis, Vector?)</li>
                         <li>User authentication & authorization</li>
                         <li>Persistent session storage</li>
                         <li>Basic multi-tenancy support</li>
@@ -738,7 +738,7 @@
                 <h4>Architecture Decisions Needed</h4>
                 <ul>
                     <li><strong>Deployment:</strong> Kubernetes vs. serverless vs. traditional hosting</li>
-                    <li><strong>Database:</strong> Relational vs. NoSQL for domain knowledge storage</li>
+                    <li><strong>Database:</strong> Relational vs. NoSQL vs. Vector for domain knowledge storage</li>
                     <li><strong>Caching:</strong> Redis vs. in-memory vs. CDN strategies</li>
                     <li><strong>File Storage:</strong> S3 vs. database BLOBs for uploaded documents</li>
                     <li><strong>Monitoring:</strong> APM solution for performance and error tracking</li>
